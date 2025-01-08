@@ -25,44 +25,109 @@ unformatted for now
 Tank - Banfield(?) / Garber / Autry (hybrid)
 
 -Banfield:
+
   Special: Large presentation, stuns the enemy for a turn
+  
   Normal Attack: Fake quiz
+  
   Special resource: Phospholipids
+
+  
 -Garber:
+
   Special: Calls the enemy's parents, weakening their dmg by 40% for 3 turns 
+  
   Attack: Confiscates the enemy phone
+  
   Special resource: the phones
+
+
+  
 -Autry (hybrid between tank and dps):
+
   Special: Does weightlifting, doubles his attack for the next turn, 2.5x against unprepared enemies. 
+  
   Attack: Throws a baskbetball, marks people unprepared 
+  
   Special resource: dumbbells 
+
+
+  
 DPS - Mr. Sterr / Autry (hybrid) /
+
+
+
 -Mr. Sterr:
+
   Special: Gives a test, half of the enemies will get an F and take some damage 
+  
   Attack: Calls you a skill issue
+  
   Special resource: Skill issues
+
+
+  
 Healer - Mrs. Weinwurm / Fang
+
+
+
+
 -Mrs. Weinwurm:
+
   Special: Gives a free 100 to teammate
+  
   Attack: Throws a bucket of pencils at enemies, dealing very light damage to a single target
+  
   Special Resource: Health Insurance policies
+
+
+  
 Mrs. Fang:
+
   Special: Gives a speech, +25% to all stats of teammates for 2 turns
+  
   Attack: Threatens a quiz 
+  
   Special Resource: CPR kits
+
+
+  
 Boss - Mr K But Evil / Dr. Kiwi
+
+
+
+
 -Mr. K But Evil:
+
   Special: Gives a test in hexadecimal assembly
+  
   Attack: Makes target spend the next 2 turns doing a lab (stun)
+  
   Special Resource: Linux kernels
+
+
+  
 -Dr. Kiwi:
+
   Special: Assigns 50 edpuzzles
+  
   Attack: Assigns 20 edpuzzles
+  
   Special Resource: Edpuzzles
-Superboss - Mr Morran
--Mr. Morran: 
+
+
+  
+Superboss - Mr Moran
+
+
+
+
+-Mr. Moran: 
+
   Special: Summons 2 police as minions
+  
   Attack: Tackles target
+  
   Special Resource: Confiscated phones
 
 
