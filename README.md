@@ -21,7 +21,9 @@ Make a clear list of features that work/dont work
 replace this with your documentation for your two Adventurer subclasses. If you modify or replace the provided CodeWarrior class, please provide documentation for that as well.
 
 unformatted for now
+
 Tank - Banfield(?) / Garber / Autry (hybrid)
+
 -Banfield:
   Special: Large presentation, stuns the enemy for a turn
   Normal Attack: Fake quiz
