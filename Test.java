@@ -9,14 +9,19 @@ public class Test {
         //This is just to test if my functions work as I hope they do.
         Screen screen = new Screen(10, 25);
 		Sprite yes = spriteSheet.testSprite.clone(); //Make sure to use .clone() on sprite creation because otherwise you will just move the template sprite, and you do not want to do that.
+        Thread game = new Thread(screen);
+        game.start();
         screen.addSprite(yes);
 
         while(true) {
              //one function in and im already in spaghetti hell
-            Text.hideCursor(); //this does not work.
-            screen.run();
-            yes.move(1, 1);
+            //Text.hideCursor(); //this does not work.
 
+            yes.move(1, 1);
+            try {
+                TimeUnit.MILLISECONDS.sleep(400); //The game runs at 2.5fps but that can be easily changed by editing this line. I severely doubt that processing time will be a major factor
+            } catch (InterruptedException ignored) {
+            }
 
         }
     }

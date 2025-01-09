@@ -106,6 +106,8 @@ public class Screen implements Runnable {
             draw();
             try {
                 TimeUnit.MILLISECONDS.sleep(400); //The game runs at 2.5fps but that can be easily changed by editing this line. I severely doubt that processing time will be a major factor
+                //System.out.println(sprites.toString());
+
             } catch (InterruptedException ignored) {
             }
         }
