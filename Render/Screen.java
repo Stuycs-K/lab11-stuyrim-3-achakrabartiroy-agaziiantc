@@ -1,13 +1,16 @@
 package Render;
 
 import Util.Util;
-
+import Util.Sprite;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Screen {
     private static int width, height; //having more than one would not be useful, so this will be static.
     private OutputStream buffer;
-
+    private byte[] instance;
+    private ArrayList<Sprite> sprites = new ArrayList<>();
 
 
     public Screen(int width, int height, int outputtype) {//Using outputtype because if I have the time to do this then later on I want to try adding LAN multiplayer
@@ -19,6 +22,8 @@ public class Screen {
         if(outputtype == 1) {
             buffer = new BufferedOutputStream(System.out);
         }
+        instance = new byte[width * height];
+        Arrays.fill(instance, (byte) ' ');
 
     }
     public Screen(int width, int height) {
@@ -42,29 +47,62 @@ public class Screen {
 
 
     private void drawBox(){
-        try {
-            this.buffer.write(Util.multstring("=", this.width).getBytes());
-            for(int i=0; i<this.height; i++){
-                this.buffer.write(("\n" + "=" + Util.multstring(" ", this.width-2) + "=").getBytes());
+            for(int i = 0; i < width; i++){
+                this.instance[i] = '=';
             }
-            this.buffer.write(("\n" + Util.multstring("=", this.width)).getBytes());
-        }catch(IOException ignored){}
-    }
+            for(int i=0; i<this.height; i++){
+                this.instance[i*width] = '=';
+                this.instance[i*width + width-1] = '=';
+            }
+            for(int i = 0; i < width; i++){
+                this.instance[((height-1) * width) + i] = '=';
+            }
 
-	public void drawSprite(Sprite sp, int x, int y){
+    }
+    public void addSprite(Sprite sp){
+        sprites.add(sp);
+    }
+    public void removeSprite(Sprite sp){
+        sprites.remove(sp);
+    }
+	private void drawSprite(Sprite sp){
+
 		//offset SHOULD be y * this.width + x. If it is not that then I messed up in drawBox().
-		for(int i=0; i<sp.map.length; sp++){
+        //char[] s = this.buffer.toString().toCharArray();
+		for(int i=0; i<sp.map.length; i++){
 			//this will iterate through the sprite's map and add the corresponding element of texture to it.
-			this.buffer.write(sp.texture[i].getBytes(), (x + sp.map[i][0]) + (y + sp.map[i][1]) * this.width);
-		}
+            int loc = (sp.x + sp.map[i][0]) + (sp.y + sp.map[i][1]) * width;
+            if(loc > width * height){
+                loc = loc%(width * height);
+            }
+            this.instance[loc] = (sp.texture[i]);
+        }
 	}
 
     public void draw() {
+        Arrays.fill(this.instance, (byte) ' ');
         this.drawBox();
+        for(int i=0; i<this.sprites.size(); i++){
+            drawSprite(this.sprites.get(i));
+        }
         try {
+            for(int i=0; i<height; i++) {
+
+                for (int j = 0; j < width; j++) {
+                    this.buffer.write(instance[i * width + j]);
+                }
+                this.buffer.write("\n".getBytes());
+            }
+
             System.out.println("\033\143"); //just don't run this thing outside of linux to be honest
             this.buffer.flush();
-        }catch(IOException ignored){}
+            //this.buffer.close(); This line will stop the entire program after printing, do not uncomment unless you need it for debugging.
+            }catch(IOException ignored){}
+        }
 
-    }
+
+
+
+
+
 }

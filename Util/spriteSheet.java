@@ -1,6 +1,9 @@
+package Util;
+
+
 public class spriteSheet {
 	
-	public static final testSprite = new Sprite(
+	public static final Sprite testSprite = new Sprite(
 		new int[][] {
 			{0, 0},
 			{0, 1},
@@ -8,8 +11,8 @@ public class spriteSheet {
 			{1, 1}
 		},
 
-		 new String[]{
-		 	"a", "b", "c", "d"
+		 new byte[]{
+		 	'a', 'b', 'c', 'd'
 		 }
 		 
 	);

@@ -1,8 +1,31 @@
+package Util;
+
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Sprite {
 	public int[][] map;
-	public String[] texture;
-	public Sprite(String[] s, int[][] n){
+	public byte[] texture;
+	public int x, y = 0;
+	public Sprite(int[][] n, byte[] s){
 		this.map = n;
 		this.texture = s;
+	}
+
+	public void move(int x, int y){
+		this.x+=x;
+		this.y+=y;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o == null || getClass() != o.getClass()) return false;
+		Sprite sprite = (Sprite) o;
+		return x == sprite.x && y == sprite.y && Objects.deepEquals(map, sprite.map) && Objects.deepEquals(texture, sprite.texture);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(Arrays.deepHashCode(map), Arrays.hashCode(texture), x, y);
 	}
 }
