@@ -51,6 +51,14 @@ public class Screen {
         }catch(IOException ignored){}
     }
 
+	public void drawSprite(Sprite sp, int x, int y){
+		//offset SHOULD be y * this.width + x. If it is not that then I messed up in drawBox().
+		for(int i=0; i<sp.map.length; sp++){
+			//this will iterate through the sprite's map and add the corresponding element of texture to it.
+			this.buffer.write(sp.texture[i].getBytes(), (x + sp.map[i][0]) + (y + sp.map[i][1]) * this.width);
+		}
+	}
+
     public void draw() {
         this.drawBox();
         try {
