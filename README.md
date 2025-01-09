@@ -59,7 +59,16 @@ The only status (SO FAR) is prepardness, there is 3 possible states of it:
 | Special resource: Skill issues                                                                                             |
 
 
-  
+###### other dps possibilities:
+
+
+- Simon
+
+- Jaishankar
+
+- Econome
+
+- 
   
   
   
