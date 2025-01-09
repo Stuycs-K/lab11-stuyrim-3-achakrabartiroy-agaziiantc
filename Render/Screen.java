@@ -2,6 +2,7 @@ package Render;
 
 import Util.Util;
 import Util.Sprite;
+import Util.TextSprite;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +13,7 @@ public class Screen implements Runnable {
     private OutputStream buffer;
     private static byte[] instance; //rendering is done by iterating over every byte in this array and mapping it to a corresponding character. If you need a character that isn't in the byte range you have bigger problems. It is static because I want it to be the same across multiple screens (in the future if I have the time I will implement LAN multiplayer)
     private ArrayList<Sprite> sprites = new ArrayList<>();
-
+    private ArrayList<TextSprite> textsprites = new ArrayList<>();
 
     public Screen(int width, int height, int outputtype) {//Using outputtype because if I have the time to do this then later on I want to try adding LAN multiplayer
         this.width = width;
@@ -63,10 +64,13 @@ public class Screen implements Runnable {
     public void addSprite(Sprite sp){
         sprites.add(sp);
     }
-    public void removeSprite(Sprite sp){
+    public void rmSprite(Sprite sp){
         sprites.remove(sp);
     }
-	private void drawSprite(Sprite sp){
+    public void addTextSprite(TextSprite ts){textsprites.add(ts);}
+    public void rmTextSprite(TextSprite ts){textsprites.remove(ts);}
+
+    private void drawSprite(Sprite sp){
 
 		//offset SHOULD be y * this.width + x. If it is not that then I messed up in drawBox().
         //char[] s = this.buffer.toString().toCharArray();
@@ -76,15 +80,39 @@ public class Screen implements Runnable {
             if(loc >= width * height){
                 loc = loc%(width * height);
             }
-            this.instance[loc] = (sp.texture[i]);
+            instance[loc] = (sp.texture[i]);
         }
 	}
 
+    private void drawTextSprite(TextSprite sp){
+        int ln = 0;
+        for(int i=0; i<sp.text.length; i++){
+            int loc = (sp.x + i) + (sp.y) * width;
+            while((loc - ((sp.y + ln) * width)) > 0){
+                /*so like
+                =            loc     =sp.y*width
+
+                this if statement gets triggered if instead of the thing above it's
+                =               =sp.y*width loc <this will overflow onto the next line
+                if that happens, I want to move down from sp.x instead of overflowing fully.
+                 */
+                //text overflow handling
+                ln++;
+                loc = loc - (sp.y * width);
+                loc = loc + sp.x;
+            }
+            instance[loc] = sp.text[i];
+        }
+    }
+
     public void draw() {
-        Arrays.fill(this.instance, (byte) ' '); //Reset the map on every iteration
+        Arrays.fill(instance, (byte) ' '); //Reset the map on every iteration
         this.drawBox();
         for(int i=0; i<this.sprites.size(); i++){
             drawSprite(this.sprites.get(i));
+        }
+        for(int i=0; i<this.textsprites.size(); i++){
+            drawTextSprite(this.textsprites.get(i));
         }
         try {
             for(int i=0; i<height; i++) {
