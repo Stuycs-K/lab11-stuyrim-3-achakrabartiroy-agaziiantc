@@ -12,7 +12,7 @@ public class spriteSheet {
 		},
 
 		 new byte[]{
-		 	'a', 'b', 'c', 'd'
+		 	't', 'e', 's', 't'
 		 }
 		 
 	);

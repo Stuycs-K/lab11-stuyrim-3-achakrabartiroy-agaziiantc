@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class Screen implements Runnable {
     private static int width, height; //having more than one would not be useful, so this will be static.
     private OutputStream buffer;
-    private byte[] instance; //rendering is done by iterating over every byte in this array and mapping it to a corresponding character. If you need a character that isn't in the byte range you have bigger problems.
+    private static byte[] instance; //rendering is done by iterating over every byte in this array and mapping it to a corresponding character. If you need a character that isn't in the byte range you have bigger problems. It is static because I want it to be the same across multiple screens (in the future if I have the time I will implement LAN multiplayer)
     private ArrayList<Sprite> sprites = new ArrayList<>();
 
 
@@ -73,7 +73,7 @@ public class Screen implements Runnable {
 		for(int i=0; i<sp.map.length; i++){
 			//this will iterate through the sprite's map and add the corresponding element of texture to it.
             int loc = (sp.x + sp.map[i][0]) + (sp.y + sp.map[i][1]) * width;
-            if(loc > width * height){
+            if(loc >= width * height){
                 loc = loc%(width * height);
             }
             this.instance[loc] = (sp.texture[i]);
@@ -103,9 +103,12 @@ public class Screen implements Runnable {
     @Override
     public void run(){ //This will make the rendering script run on a separate thread
         while(true) {
+            long time = System.nanoTime();
             draw();
             try {
-                TimeUnit.MILLISECONDS.sleep(400); //The game runs at 2.5fps but that can be easily changed by editing this line. I severely doubt that processing time will be a major factor
+                long time2 = System.nanoTime();
+                System.out.println(((time2 - time) / 1_000_000) + "ms | " + (1_000_000_000 / (time2 - time)) + " FPS");
+                TimeUnit.MILLISECONDS.sleep(1); //The game runs at 2.5fps but that can be easily changed by editing this line. I severely doubt that processing time will be a major factor
                 //System.out.println(sprites.toString());
 
             } catch (InterruptedException ignored) {

@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class Test {
     public static void main(String[] args) {
         //This is just to test if my functions work as I hope they do.
-        Screen screen = new Screen(10, 25);
+        Screen screen = new Screen(25, 25);
 		Sprite yes = spriteSheet.testSprite.clone(); //Make sure to use .clone() on sprite creation because otherwise you will just move the template sprite, and you do not want to do that.
         Thread game = new Thread(screen);
         game.start();
@@ -19,7 +19,7 @@ public class Test {
 
             yes.move(1, 1);
             try {
-                TimeUnit.MILLISECONDS.sleep(400); //The game runs at 2.5fps but that can be easily changed by editing this line. I severely doubt that processing time will be a major factor
+                TimeUnit.MILLISECONDS.sleep(1); //The game runs at 2.5fps but that can be easily changed by editing this line. I severely doubt that processing time will be a major factor
             } catch (InterruptedException ignored) {
             }
 
