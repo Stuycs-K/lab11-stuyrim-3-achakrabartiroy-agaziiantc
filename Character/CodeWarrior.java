@@ -1,3 +1,5 @@
+package Character;
+
 public class CodeWarrior extends Adventurer{
   int caffeine, caffeineMax;
   String preferredLanguage;

@@ -1,4 +1,5 @@
-import java.util.Random;
+package Character;
+
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
@@ -37,7 +38,7 @@ public abstract class Adventurer{
    * for more flexible targetting.
    */
   //heal or buff the party
-  //public abstract String support(ArrayList<Adventurer> others);
+  //public abstract String support(ArrayList<Character.Adventurer> others);
 
   //heal or buff the target adventurer
   public abstract String support(Adventurer other);

@@ -1,4 +1,7 @@
 import java.util.*;
+import Character.*;
+import Render.*;
+
 public class Game{
   private static final int WIDTH = 80;
   private static final int HEIGHT = 30;
@@ -60,7 +63,7 @@ public class Game{
     *Caffeine: 20 Mana: 10   Snark: 1
     * ***THIS ROW INTENTIONALLY LEFT BLANK***
     */
-    public static void drawParty(ArrayList<Adventurer> party,int startRow){
+    public static void drawParty(ArrayList<Adventurer> party, int startRow){
 
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
       //YOUR CODE HERE
@@ -161,7 +164,7 @@ public class Game{
       //display event based on last turn's input
       if(partyTurn){
 
-        //Process user input for the last Adventurer:
+        //Process user input for the last Character.Adventurer:
         if(input.equals("attack") || input.equals("a")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           //YOUR CODE HERE

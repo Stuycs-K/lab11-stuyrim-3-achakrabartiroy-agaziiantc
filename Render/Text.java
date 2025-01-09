@@ -1,3 +1,5 @@
+package Render;
+
 public class Text{
   /*Base colors*/
   public static final int BLACK = 30;
@@ -9,11 +11,11 @@ public class Text{
   public static final int CYAN = 36;
   public static final int WHITE = 37;
 
-  /*Text modifiers to be ADDED to a color*/
+  /*Render.Text modifiers to be ADDED to a color*/
   public static final int BACKGROUND = 10;
   public static final int BRIGHT = 60;
 
-  /*Text modifiers that are separate from color*/
+  /*Render.Text modifiers that are separate from color*/
   public static final int BOLD = 1;
   public static final int UNDERLINE = 4;
   public static final int INVERTED = 7;

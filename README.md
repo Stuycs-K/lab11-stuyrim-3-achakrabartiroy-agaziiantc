@@ -16,9 +16,9 @@ Make a clear list of features that work/dont work
 :beetle: This is a bug that affects the game.
 
 
-## Adventurer Subclasses
+## Character.Adventurer Subclasses
 
-replace this with your documentation for your two Adventurer subclasses. If you modify or replace the provided CodeWarrior class, please provide documentation for that as well.
+replace this with your documentation for your two Character.Adventurer subclasses. If you modify or replace the provided Character.CodeWarrior class, please provide documentation for that as well.
 
 ### ok so the way we will do this is we implement one from every table and then if we still have time left after we will add the others. spending 50 hours on making a bijillion classes before we have anything else is a bad idea. do not spend 50 hours making a bijillion classes unless we have nothing else to do.
 
