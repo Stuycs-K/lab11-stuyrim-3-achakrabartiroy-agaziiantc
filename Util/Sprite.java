@@ -12,6 +12,12 @@ public class Sprite {
 		this.texture = s;
 	}
 
+	public Sprite clone(){
+		Sprite out = new Sprite(this.map, this.texture);
+		out.move(x, y);
+		return out;
+	}
+
 	public void move(int x, int y){
 		this.x+=x;
 		this.y+=y;
