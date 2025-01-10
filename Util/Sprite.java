@@ -6,14 +6,16 @@ import java.util.Objects;
 public class Sprite {
 	public int[][] map;
 	public byte[] texture;
+	public String[] colors;
 	public int x, y = 0;
-	public Sprite(int[][] n, byte[] s){
+	public Sprite(int[][] n, byte[] s, String[] colors){
 		this.map = n;
 		this.texture = s;
+		this.colors = colors; //definitely not the greatest way of going about it but oh well
 	}
 
 	public Sprite clone(){
-		Sprite out = new Sprite(this.map, this.texture);
+		Sprite out = new Sprite(this.map, this.texture, this.colors);
 		out.move(x, y);
 		return out;
 	}

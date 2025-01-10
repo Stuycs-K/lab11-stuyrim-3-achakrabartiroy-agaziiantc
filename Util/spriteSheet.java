@@ -1,6 +1,8 @@
 package Util;
 
 
+import Render.Text;
+
 public class spriteSheet {
 	
 	public static final Sprite testSprite = new Sprite(
@@ -13,8 +15,10 @@ public class spriteSheet {
 
 		 new byte[]{
 		 	't', 'e', 's', 't'
-		 }
-		 
+		 },
+		new String[]{
+			Util.clr(Text.RED), Util.clr(Text.WHITE), Util.clr(Text.BLUE), Util.clr(Text.YELLOW)
+		}
 	);
 
 	public static final Sprite dvd = new Sprite(
@@ -27,6 +31,11 @@ public class spriteSheet {
 					'/', '-', '-', '-', 92, //92 is a backslash '\'
 					'|', 'D', 'V', 'D', '|',
 					92, '-', '-', '-', '/'
+			},
+			new String[]{
+					Util.clr(Text.WHITE), Util.clr(Text.WHITE), Util.clr(Text.WHITE), Util.clr(Text.WHITE), Util.clr(Text.WHITE),
+					Util.clr(Text.WHITE), Util.clr(Text.GREEN), Util.clr(Text.GREEN), Util.clr(Text.GREEN), Util.clr(Text.WHITE),
+					Util.clr(Text.WHITE), Util.clr(Text.WHITE), Util.clr(Text.WHITE), Util.clr(Text.WHITE), Util.clr(Text.WHITE)
 			}
 		);
 

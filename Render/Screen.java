@@ -1,11 +1,13 @@
 package Render;
 
 import Util.Util;
+//import Util.Clr;
 import Util.Sprite;
 import Util.TextSprite;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class Screen implements Runnable {
@@ -14,6 +16,7 @@ public class Screen implements Runnable {
     private static byte[] instance; //rendering is done by iterating over every byte in this array and mapping it to a corresponding character. If you need a character that isn't in the byte range you have bigger problems. It is static because I want it to be the same across multiple screens (in the future if I have the time I will implement LAN multiplayer)
     private ArrayList<Sprite> sprites = new ArrayList<>();
     private ArrayList<TextSprite> textsprites = new ArrayList<>();
+    HashMap<Integer, String> Colors = new HashMap<>();
     private int c = 0;
     private boolean paused = false;
     public Screen(int width, int height, int outputtype) {//Using outputtype because if I have the time to do this then later on I want to try adding LAN multiplayer
@@ -70,19 +73,27 @@ public class Screen implements Runnable {
     }
     public void addTextSprite(TextSprite ts){textsprites.add(ts);}
     public void rmTextSprite(TextSprite ts){textsprites.remove(ts);}
-
+    public void addColor(int loc, String clr) {
+        Colors.put(loc, clr);
+    }
+    public void rmColor(int loc) {
+        Colors.remove(loc);
+    }
     private void drawSprite(Sprite sp){
 
 		//offset SHOULD be y * this.width + x. If it is not that then I messed up in drawBox().
         //char[] s = this.buffer.toString().toCharArray();
+        int loc = 0;
 		for(int i=0; i<sp.map.length; i++){
 			//this will iterate through the sprite's map and add the corresponding element of texture to it.
-            int loc = (sp.x + sp.map[i][0]) + (sp.y + sp.map[i][1]) * width;
+            loc = (sp.x + sp.map[i][0]) + (sp.y + sp.map[i][1]) * width;
             if(loc >= width * height){
                 loc = loc%(width * height);
             }
+            Colors.put(loc, sp.colors[i]);
             instance[loc] = (sp.texture[i]);
         }
+        Colors.put(loc+1, Util.unclr);
 	}
 
     private void drawTextSprite(TextSprite sp){
@@ -125,6 +136,7 @@ public class Screen implements Runnable {
     }
     public void draw() {
         Arrays.fill(instance, (byte) ' '); //Reset the map on every iteration
+        Colors.clear(); //Reset the colors too. Yes this is really unoptimized but my goal is to run this at a minimum of 10 fps so I think im doing just fine
         this.drawBox();
         for(int i=0; i<this.textsprites.size(); i++){
             drawTextSprite(this.textsprites.get(i));
@@ -137,7 +149,13 @@ public class Screen implements Runnable {
             for(int i=0; i<height; i++) {
 
                 for (int j = 0; j < width; j++) {
-                    this.buffer.write(instance[i * width + j]); //Throws the byte array into a BufferedOutput, basically lets me print the entire string at once a lot faster
+                    if(Colors.containsKey(i*width + j)) {
+                        this.buffer.write(Colors.get(i * width + j).getBytes());
+                        this.buffer.write(instance[i * width + j]); //Throws the byte array into a BufferedOutput, basically lets me print the entire string at once a lot faster
+                        this.buffer.write(Util.unclr.getBytes());
+                    }else{
+                        this.buffer.write(instance[i * width + j]);
+                    }
                 }
                 this.buffer.write("\n".getBytes());
             }

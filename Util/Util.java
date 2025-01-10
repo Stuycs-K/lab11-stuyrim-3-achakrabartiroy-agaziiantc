@@ -10,4 +10,8 @@ public class Util {
         }
         return out;
     }
+    public static String clr(int n){
+        return ("\u001b[" + n + "m");
+    }
+    public static String unclr = "\u001b[0m";
 }
