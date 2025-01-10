@@ -40,13 +40,12 @@ note for when in class: we forgot support abilities lols
 
  ### Tank - Banfield / Garber / Autry (hybrid tank and dps)              
 
-| Banfield:                                               | Garber:                                                                    | Autry                                                                                               |
-|:--------------------------------------------------------|:---------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------|
-| Special: Large presentation, stuns the enemy for a turn | Special: Calls the enemy's parents, weakening their dmg by 40% for 3 turns | Special: Does weightlifting, doubles his attack for the next turn, 2.5x against unprepared enemies. |
-| Normal Attack: Fake quiz                                | Attack: Confiscates the enemy phone if target isn't prepared               | Attack: Throws a baskbetball, marks people unprepared                                               |
-| Special resource: Phospholipids                         | Special resource: the phones                                               | Special resource: dumbbells                                                                         |
-
-
+| Banfield:                                                 | Garber:                                                                    | Autry                                                                                               |
+|:----------------------------------------------------------|:---------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------|
+| Special: Large presentation, stuns the enemy for a turn   | Special: Calls the enemy's parents, weakening their dmg by 40% for 3 turns | Special: Does weightlifting, doubles his attack for the next turn, 2.5x against unprepared enemies. |
+| Normal Attack: Fake quiz                                  | Attack: Confiscates the enemy phone if target isn't prepared               | Attack: Throws a baskbetball, marks people unprepared                                               |
+| Special resource: Phospholipids                           | Special resource: the phones                                               | Special resource: dumbbells                                                                         |
+| Support: Adds +20% damage resistance for 2 turns. Stacks. | Support: Eats the phone, restoring 5 hp to target.                         | Support: Gives +15% damage to target.                                                               |
   
   
   
@@ -61,7 +60,7 @@ note for when in class: we forgot support abilities lols
 | Special: Gives a test, all enemies will have a 50% chance to take damage normally, 25% if prepared, and 75% if unprepared. Damage formula is Special*2. Enemies will be stunned for Special/5 turns |
 | Attack: Calls you a skill issue                                                                                                                                                                     |
 | Special resource: Skill issues                                                                                                                                                                      |
-
+| Support: Tutors target, gives +1 prepardness and increases attack by 10%.                                                                                                                           |
 
 ###### other dps possibilities:
 
@@ -84,18 +83,11 @@ note for when in class: we forgot support abilities lols
 
 | Mrs. Weinwurm                                                                                                         | Mrs. Fang                                                                                                                                   |
 |:----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
-| Special: Gives a free 100 to teammate                                                                                 | Special: Gives a speech, +25% to all stats of teammates for 2 turns                                                                         |
+| Special: Gives a free 100 to teammate                                                                                 | Special: Revive a dead teammate and set target's hp to 5.                                                                                   |
 | Attack: Throws a bucket of pencils at enemies, dealing very light damage to a single target and marking it unprepared | Attack: Threatens a quiz, inflicts minor debuff unless target is prepared. If target unprepared, inflict extra debuff but mark it prepared. |
 | Special Resource: Health Insurance policies                                                                           | Special Resource: CPR kits                                                                                                                  |
+| Support: Gives target a good health insurance policy. +1 Regen on every turn for the next 5 turns. Stacks.            | Support: Gives a speech, +25% to all stats of target for 2 turns. 25% of current health is regened, does not overflow.                      |
 
-  
-  
-  
-  
-  
-
-
-  
 # Bosses
 
 
