@@ -14,7 +14,7 @@ public class Screen implements Runnable {
     private static byte[] instance; //rendering is done by iterating over every byte in this array and mapping it to a corresponding character. If you need a character that isn't in the byte range you have bigger problems. It is static because I want it to be the same across multiple screens (in the future if I have the time I will implement LAN multiplayer)
     private ArrayList<Sprite> sprites = new ArrayList<>();
     private ArrayList<TextSprite> textsprites = new ArrayList<>();
-
+    private int c = 0;
     public Screen(int width, int height, int outputtype) {//Using outputtype because if I have the time to do this then later on I want to try adding LAN multiplayer
         this.width = width;
         this.height = height;
@@ -136,7 +136,11 @@ public class Screen implements Runnable {
                 this.buffer.write("\n".getBytes());
             }
 
-            System.out.println("\033\143"); //just don't run this thing outside of linux to be honest
+            if((c%100) == 0) {
+                System.out.println("\033\143"); //just don't run this thing outside of linux to be honest
+            }
+            c++;
+            Text.go(0, 0);
             this.buffer.flush(); //Outputs the string
             //this.buffer.close(); This line will stop the entire program after printing, do not uncomment unless you need it for debugging.
             }catch(IOException ignored){}
