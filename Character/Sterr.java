@@ -39,15 +39,18 @@ public class Sterr extends Adventurer {
     @Override
     public void setSpecial(int n) {
         skillissues = n;
+        if(skillissues > maxSkillissues){
+            skillissues = maxSkillissues;
+        }
     }
 
-    @Override
-    public String support() {
-        return ""; //unimplemented for now because we forgot to come up with support abilities for our characters
-    }
+
 
     @Override
     public String specialAttack(Adventurer other) { //gamblecore aesthetic
+        if(this.getSpecial() < 5){
+            return this.getName() + " attempts to give a test, but no one is skill issued enough.";
+        }
         Team target = other.team; //50% chance of this line crashing and burning in like 3 days when I start actually implementing the game.
         StringBuilder out = new StringBuilder();
         out.append(this.getName() + " Assigns a test to the enemy team. ");
@@ -56,8 +59,8 @@ public class Sterr extends Adventurer {
             Adventurer gambler = target.team[i]; //This isn't the most memory efficient way of doing this but does it really matter
             if(gambler.getPreparedness() < 0){
                 if(dice < 80){
-                    out.append(gambler.getName() + " fails the test and takes " + (this.getSpecial() * 2) + " damage and is stunned for " + (this.getSpecial() / 5) + " turns.");
-                    gambler.applyDamage(this.getSpecial() * 2);
+                    out.append(gambler.getName() + " fails the test and takes " + ((int) ((double) this.getSpecial() * 2 * this.getBonusatk())) + " damage and is stunned for " + (this.getSpecial() / 5) + " turns.");
+                    gambler.applyDamage((int) ((double) this.getSpecial() * 2 * this.getBonusatk()));
                     gambler.modifyStun(this.getSpecial() / 5);
                     gambler.modifyPreparedness(1);
                 }else{
@@ -67,8 +70,8 @@ public class Sterr extends Adventurer {
             }
             else if(gambler.getPreparedness() == 0){
                 if(dice <= 50){
-                    out.append(gambler.getName() + " fails the test and takes " + (this.getSpecial() * 2) + " damage and is stunned for " + (this.getSpecial() / 5) + " turns.");
-                    gambler.applyDamage(this.getSpecial() * 2);
+                    out.append(gambler.getName() + " fails the test and takes " + ((int) ((double) this.getSpecial() * 2 * this.getBonusatk())) + " damage and is stunned for " + (this.getSpecial() / 5) + " turns.");
+                    gambler.applyDamage((int) ((double) this.getSpecial() * 2 * this.getBonusatk()));
                     gambler.modifyStun(this.getSpecial() / 5);
                     gambler.modifyPreparedness(1);
                 }else{
@@ -78,8 +81,8 @@ public class Sterr extends Adventurer {
             }
             else if(gambler.getPreparedness() > 0){
                 if(dice <= 20){
-                    out.append(gambler.getName() + " fails the test and takes " + (this.getSpecial() * 2) + " damage and is stunned for " + (this.getSpecial() / 5) + " turns.");
-                    gambler.applyDamage(this.getSpecial() * 2);
+                    out.append(gambler.getName() + " fails the test and takes " + ((int) ((double) this.getSpecial() * 2 * this.getBonusatk())) + " damage and is stunned for " + (this.getSpecial() / 5) + " turns.");
+                    gambler.applyDamage((int) ((double) this.getSpecial() * 2 * this.getBonusatk()));
                     gambler.modifyStun(this.getSpecial() / 5);
                     gambler.modifyPreparedness(1);
                 }else{
@@ -93,14 +96,24 @@ public class Sterr extends Adventurer {
 
     @Override
     public String support(Adventurer other) {
-        return ""; //unimplemented for now because we forgot to come up with support abilities for our characters
+        other.modifyPreparedness(1);
+        return this.getName() + " tutors " + other.getName() + ", giving them +10% attack on the next turn and +1 prepardness.";
+    }
+
+    @Override
+    public String support() {
+        this.modifyPreparedness(1);
+        return this.getName() + " tutors himself, giving +10% attack on the next turn and +1 prepardness";
     }
 
     @Override
     public String attack(Adventurer other) {
 
-        other.applyDamage(this.getSpecial() / 2);
+        other.applyDamage((int) ((double) this.getSpecial() / 2 * this.getBonusatk()));
         other.modifyPreparedness(-1);
-        return this.getName() + " calls " + other.getName() + " a skill issue. " + other.getName() + " takes " + (this.getSpecial() / 2) + " damage and is now less prepared.";
+        int skillissuesgain = rand.nextInt(3);
+        this.skillissues += skillissuesgain;
+        return this.getName() + " calls " + other.getName() + " a skill issue. " + other.getName() + " takes " + (this.getSpecial() / 2) + " damage and is now less prepared. " + this.getName() + " gains " + skillissuesgain + " skill issues ";
+
     }
 }

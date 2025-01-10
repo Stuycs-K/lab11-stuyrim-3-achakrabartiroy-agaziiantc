@@ -6,7 +6,8 @@ public abstract class Adventurer{
   private int stun;
   private int prepared; // <0 = unprepared, >0=prepared, 0=no status.
   public Team team; //Gonna have to pray that this doesn't cause an infinite loop of doom
-
+  private double armor = 1;
+  private double bonusatk = 0;
   //Abstract methods are meant to be implemented in child classes.
   /*
   all adventurers must have a custom special
@@ -57,7 +58,12 @@ public abstract class Adventurer{
   */
 
   public void applyDamage(int amount){
-    this.HP -= amount;
+    this.HP -= (int) (amount / armor);
+    if (armor < 1){
+      armor *= 1.1;
+    }else if(armor > 1){
+      armor /= 1.1;
+    }
   }
 
   //You did it wrong if this happens.
@@ -123,7 +129,24 @@ public abstract class Adventurer{
   public void modifyPreparedness(int n){
     prepared += n;
   }
-
+  public double getArmor(){
+    return this.armor;
+  }
+  public void setArmor(int n){
+    this.armor = n;
+  }
+  public void modifyArmor(int n){
+    this.armor += n;
+  }
+  public double getBonusatk(){
+    return this.bonusatk;
+  }
+  public void setBonusatk(int n){
+    this.bonusatk = n;
+  }
+  public void modifyBonusatk(int n){
+    this.bonusatk += n;
+  }
 
 
 }
