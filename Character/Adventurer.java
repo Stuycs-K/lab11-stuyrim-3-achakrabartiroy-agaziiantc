@@ -135,7 +135,7 @@ public abstract class Adventurer{
   public void setArmor(int n){
     this.armor = n;
   }
-  public void modifyArmor(int n){
+  public void modifyArmor(double n){
     this.armor += n;
   }
   public double getBonusatk(){
