@@ -32,7 +32,9 @@ The only status (SO FAR) is prepardness, there is 3 possible states of it:
 
 - No status (will be referred to as "not prepared")
 
-there's a stun mechanic too but that's not really what this is
+Characters can be in these states to varying extent, but as it goes further into that state the only change is it becomes harder to exit. Generally unprepared = bad and prepared = good
+
+there's also stun armor and regen but I don't want to call that status because it's just scalar quantity
 
 # Classes
 
@@ -83,7 +85,7 @@ note for when in class: we forgot support abilities lols
 
 | Mrs. Weinwurm                                                                                                         | Mrs. Fang                                                                                                                                   |
 |:----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
-| Special: Gives a free 100 to teammate                                                                                 | Special: Revive a dead teammate and set target's hp to 5.                                                                                   |
+| Special: Gives a free 100 to teammate, moving their prepardness closer to 1 and increasing armor by 0.2               | Special: Revive a dead teammate and set target's hp to 5.                                                                                   |
 | Attack: Throws a bucket of pencils at enemies, dealing very light damage to a single target and marking it unprepared | Attack: Threatens a quiz, inflicts minor debuff unless target is prepared. If target unprepared, inflict extra debuff but mark it prepared. |
 | Special Resource: Health Insurance policies                                                                           | Special Resource: CPR kits                                                                                                                  |
 | Support: Gives target a good health insurance policy. +1 Regen on every turn for the next 5 turns. Stacks.            | Support: Gives a speech, +25% to all stats of target for 2 turns. 25% of current health is regened, does not overflow.                      |

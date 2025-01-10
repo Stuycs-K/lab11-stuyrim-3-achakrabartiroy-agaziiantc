@@ -3,11 +3,22 @@ package Character;
 import Util.Util;
 
 import java.util.SplittableRandom;
+import Util.UniformRandom;
 
 public class Banfield extends Adventurer{
     int phospholipids, maxPhospholipids;
     private SplittableRandom rand;
-
+    public Banfield(String name, int hp, int maxhp, int special, int maxspecial){
+        this.setName(name);
+        this.setHP(hp);
+        this.setmaxHP(maxhp);
+        this.setSpecial(special);
+        this.maxPhospholipids = maxspecial;
+        this.rand = UniformRandom.rand.split();
+    }
+    public Banfield(String name){
+        this(name, 10, 10, 10, 10);
+    }
     @Override
     public String getSpecialName() {
         return "Phospholipids";

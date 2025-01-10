@@ -8,6 +8,7 @@ public abstract class Adventurer{
   public Team team; //Gonna have to pray that this doesn't cause an infinite loop of doom
   private double armor = 1;
   private double bonusatk = 0;
+  private int[] regen = new int[2]; //regen[0] will be amt and regen[1] will be turns. For the sake of my sanity regen effects will not stack.
   //Abstract methods are meant to be implemented in child classes.
   /*
   all adventurers must have a custom special
@@ -147,6 +148,11 @@ public abstract class Adventurer{
   public void modifyBonusatk(int n){
     this.bonusatk += n;
   }
-
+  public int[] getRegen(){
+    return regen;
+  }
+  public void setRegen(int[] regen){
+    this.regen = regen;
+  }
 
 }
