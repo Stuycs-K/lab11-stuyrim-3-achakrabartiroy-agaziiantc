@@ -1,5 +1,11 @@
 package Character;
+/*
 
+This class will probably not be used anywhere but I still want to keep it in the project so that I can ctrl c ctrl v code from here
+
+
+
+ */
 public class CodeWarrior extends Adventurer{
   int caffeine, caffeineMax;
   String preferredLanguage;

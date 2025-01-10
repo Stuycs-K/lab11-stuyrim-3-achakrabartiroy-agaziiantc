@@ -3,6 +3,9 @@ package Character;
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
+  private int stun;
+  private int prepared; // <0 = unprepared, >0=prepared, 0=no status.
+  public Team team; //Gonna have to pray that this doesn't cause an infinite loop of doom
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -101,4 +104,26 @@ public abstract class Adventurer{
   public void setName(String s){
     this.name = s;
   }
+
+  public int getStun(){
+    return stun;
+  }
+  public void setStun(int n){
+    stun = n;
+  }
+  public void modifyStun(int n){
+    stun += n;
+  }
+  public int getPreparedness(){
+    return prepared;
+  }
+  public void setPreparedness(int n){
+    prepared = n;
+  }
+  public void modifyPreparedness(int n){
+    prepared += n;
+  }
+
+
+
 }

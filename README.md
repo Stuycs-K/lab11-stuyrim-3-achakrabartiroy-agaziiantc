@@ -32,7 +32,11 @@ The only status (SO FAR) is prepardness, there is 3 possible states of it:
 
 - No status (will be referred to as "not prepared")
 
+there's a stun mechanic too but that's not really what this is
+
 # Classes
+
+note for when in class: we forgot support abilities lols
 
  ### Tank - Banfield / Garber / Autry (hybrid tank and dps)              
 
@@ -52,11 +56,11 @@ The only status (SO FAR) is prepardness, there is 3 possible states of it:
 
   
 ### DPS - Mr. Sterr / Will add more if can come up with more
-| Mr. Sterr                                                                                                                  |
-|:---------------------------------------------------------------------------------------------------------------------------|
-| Special: Gives a test, all enemies will have a 50% chance to take damage normally, 20% if prepared, and 75% if unprepared. |
-| Attack: Calls you a skill issue                                                                                            |
-| Special resource: Skill issues                                                                                             |
+| Mr. Sterr                                                                                                                                                                                           |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Special: Gives a test, all enemies will have a 50% chance to take damage normally, 25% if prepared, and 75% if unprepared. Damage formula is Special*2. Enemies will be stunned for Special/5 turns |
+| Attack: Calls you a skill issue                                                                                                                                                                     |
+| Special resource: Skill issues                                                                                                                                                                      |
 
 
 ###### other dps possibilities:
