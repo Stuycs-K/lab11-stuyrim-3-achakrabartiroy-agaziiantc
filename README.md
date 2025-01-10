@@ -103,7 +103,7 @@ note for when in class: we forgot support abilities lols
 |:---------------------------------------------------------------|:-----------------------------------------------------------------------------------|:-------------------------------------|
 | Special: Gives a test in hexadecimal assembly                  | Special: Assigns 50 edpuzzles                                                      | Special: Summons 2 police as minions |
 | Attack: Makes target spend the next 2 turns doing a lab (stun) | Attack: Assigns 20 edpuzzles                                                       | Attack: Tackles target               |
-| Special Resource: Linux kernels (Temporary placeholder, TBD)   | Special Resource: Edpuzzles(WILL cause an infinite loop of pain if not dealt with) | Special Resource: Confiscated phones |
+| Special Resource: Sarcasm T-Shirts                             | Special Resource: Edpuzzles(WILL cause an infinite loop of pain if not dealt with) | Special Resource: Confiscated phones |
 
   
   
