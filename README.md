@@ -55,12 +55,12 @@ note for when in class: we forgot support abilities lols
 
   
 ### DPS - Mr. Sterr / Will add more if can come up with more
-| Mr. Sterr                                                                                                                                                                                           |
-|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Special: Gives a test, all enemies will have a 50% chance to take damage normally, 25% if prepared, and 75% if unprepared. Damage formula is Special*2. Enemies will be stunned for Special/5 turns |
-| Attack: Calls you a skill issue                                                                                                                                                                     |
-| Special resource: Skill issues                                                                                                                                                                      |
-| Support: Tutors target, gives +1 prepardness and increases attack by 10%.                                                                                                                           |
+| Mr. Sterr                                                                                                                                                                                           |Mr. Jaishankar                                                                               |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------|
+| Special: Gives a test, all enemies will have a 50% chance to take damage normally, 25% if prepared, and 75% if unprepared. Damage formula is Special*2. Enemies will be stunned for Special/5 turns | Special: text here                                                                          |
+| Attack: Calls you a skill issue                                                                                                                                                                     | Attack: text here                                                                           |
+| Special resource: Skill issues                                                                                                                                                                      | Special resource: text here                                                                 |
+| Support: Tutors target, gives +1 prepardness and increases attack by 10%.                                                                                                                           | Support: text here                                                                          |
 
 ###### other dps possibilities:
 
