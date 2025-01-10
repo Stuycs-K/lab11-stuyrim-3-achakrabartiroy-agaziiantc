@@ -15,6 +15,7 @@ public class Screen implements Runnable {
     private ArrayList<Sprite> sprites = new ArrayList<>();
     private ArrayList<TextSprite> textsprites = new ArrayList<>();
     private int c = 0;
+    private boolean paused = false;
     public Screen(int width, int height, int outputtype) {//Using outputtype because if I have the time to do this then later on I want to try adding LAN multiplayer
         this.width = width;
         this.height = height;
@@ -116,7 +117,12 @@ public class Screen implements Runnable {
             instance[loc] = sp.text[i];
         }
     }
-
+    public void pause(){
+        this.paused = true;
+    }
+    public void unpause(){
+        this.paused = false;
+    }
     public void draw() {
         Arrays.fill(instance, (byte) ' '); //Reset the map on every iteration
         this.drawBox();
@@ -148,16 +154,19 @@ public class Screen implements Runnable {
     @Override
     public void run(){ //This will make the rendering script run on a separate thread
         while(true) {
-            long time = System.nanoTime();
-            draw();
+            if(!paused) {
+                long time = System.nanoTime();
+                draw();
+
+                    long time2 = System.nanoTime();
+                    System.out.println(((time2 - time) / 1_000_000) + "ms | " + (1_000_000_000 / (time2 - time)) + " FPS"); //Doesn't actually run at this much fps, but it can run at this much fps if the sleep statement below gets made lower
+
+            }
             try {
-                long time2 = System.nanoTime();
-                System.out.println(((time2 - time) / 1_000_000) + "ms | " + (1_000_000_000 / (time2 - time)) + " FPS"); //Doesn't actually run at this much fps, but it can run at this much fps if the sleep statement below gets made lower
                 TimeUnit.MILLISECONDS.sleep(100); //Controls refresh rate
                 //System.out.println(sprites.toString());
 
-            } catch (InterruptedException ignored) {
-            }
+            } catch (InterruptedException ignored) {}
         }
     }
 

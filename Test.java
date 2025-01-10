@@ -58,6 +58,12 @@ public class Test {
                     ls.add(new whatamIdoing(1, 1, nsp));
                     queue.removeLast();
                 }
+                if(queue.getLast().equals("p")){
+                    screen.pause();
+                }
+                if(queue.getLast().equals("u")){
+                    screen.unpause();
+                }
             }
 
         }
