@@ -20,7 +20,7 @@ public class Test {
     public static void main(String[] args) {
         //This is just to test if my functions work as I hope they do.
         //and it has a bouncing dvd. I don't know why. The bouncing dvd does not relate to any functionality that this game will have.
-        Screen screen = new Screen(75, 25);
+        Screen screen = new Screen(80, 30);
 		Sprite yes = spriteSheet.dvd.clone(); //Make sure to use .clone() on sprite creation because otherwise you will just move the template sprite, and you do not want to do that.
         whatamIdoing why = new whatamIdoing(1, 1, yes);
         List<whatamIdoing> ls = new ArrayList<>();
