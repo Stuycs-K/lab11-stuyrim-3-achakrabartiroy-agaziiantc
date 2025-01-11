@@ -15,7 +15,7 @@ public class Listener implements Runnable {
     @Override
     public void run() {
         while(true){
-            thisislowkeyuselessngl = sc.next();
+            thisislowkeyuselessngl = sc.nextLine(); //status update this was NOT useless
             out.add(thisislowkeyuselessngl);
         }
     }

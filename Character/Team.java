@@ -6,6 +6,10 @@ public class Team {
 
     public Team(String name, Adventurer[] adv) {
         this.name = name;
-        team = adv.clone();
+        this.team = adv.clone();
+    }
+    public Team(String name) {
+        this.name = name;
+        this.team = new Adventurer[3];
     }
 }

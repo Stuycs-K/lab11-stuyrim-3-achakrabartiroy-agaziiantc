@@ -102,7 +102,7 @@ public class Screen implements Runnable {
         //int ln = 0;
         int x = sp.x;
         int y = sp.y; //Cannot have these values as an address
-        System.out.println(y);
+        //System.out.println(y);
         for(int i=0; i<sp.text.length; i++){
             x++;
             int loc = (x) + (y * width);
@@ -188,7 +188,7 @@ public class Screen implements Runnable {
 
             }
             try {
-                TimeUnit.MILLISECONDS.sleep(100); //Controls refresh rate
+                TimeUnit.MILLISECONDS.sleep(25); //Controls refresh rate
                 //System.out.println(sprites.toString());
 
             } catch (InterruptedException ignored) {}
