@@ -4,6 +4,8 @@ import Util.Util;
 //import Util.Clr;
 import Util.Sprite;
 import Util.TextSprite;
+
+import javax.sound.midi.SysexMessage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,7 +89,7 @@ public class Screen implements Runnable {
 		for(int i=0; i<sp.map.length; i++){
 			//this will iterate through the sprite's map and add the corresponding element of texture to it.
             loc = (sp.x + sp.map[i][0]) + (sp.y + sp.map[i][1]) * width;
-            if(loc >= width * height){
+            while(loc >= width * height){ //If the while loop is useful, then we are in deep shit to say the least.
                 loc = loc%(width * height);
             }
             Colors.put(loc, sp.colors[i]);
@@ -96,13 +98,18 @@ public class Screen implements Runnable {
         Colors.put(loc+1, Util.unclr);
 	}
 
-    private void drawTextSprite(TextSprite sp){
+    private void drawTextSprite(TextSprite sp){ //could probably overload drawSprite instead of this, but I don't think I will do that.
         //int ln = 0;
         int x = sp.x;
         int y = sp.y; //Cannot have these values as an address
+        System.out.println(y);
         for(int i=0; i<sp.text.length; i++){
             x++;
             int loc = (x) + (y * width);
+            if(loc >= width * height){
+                return;
+                //This case should probably be handled differently, but I don't know how.
+            }
             while(instance[loc] == '='){/*certified voodoo magic. possibly the single worst way to go about collision detection. I have a whole comment essay written out but I chose to do this anyways.
 
                 =            loc     =sp.y*width

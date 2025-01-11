@@ -21,7 +21,7 @@ public class Test {
         //This is just to test if my functions work as I hope they do.
         //and it has a bouncing dvd. I don't know why. The bouncing dvd does not relate to any functionality that this game will have.
         Screen screen = new Screen(80, 30);
-		Sprite yes = spriteSheet.testSprite.clone(); //Make sure to use .clone() on sprite creation because otherwise you will just move the template sprite, and you do not want to do that.
+		Sprite yes = spriteSheet.K.clone(); //Make sure to use .clone() on sprite creation because otherwise you will just move the template sprite, and you do not want to do that.
         whatamIdoing why = new whatamIdoing(1, 1, yes);
         List<whatamIdoing> ls = new ArrayList<>();
         ls.add(why);
@@ -37,6 +37,7 @@ public class Test {
         while(true) {
              //one function in and im already in spaghetti hell
             //Text.hideCursor(); //this does not work.
+            title.move(1, 1);
             for(whatamIdoing i : ls) {
                 i.sp.move(i.vectx, i.vecty);
                 if (i.sp.x + 5 == Screen.getWidth() || i.sp.x == 0) {
