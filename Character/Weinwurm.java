@@ -8,6 +8,8 @@ public class Weinwurm extends Adventurer{
 
     int HIP, maxHIP; //HIP = Health insurance policies
     private SplittableRandom rand;
+    public int intVal = 3;
+
     public Weinwurm(String name, int hp, int maxhp, int special, int maxspecial){
         this.setName(name);
         this.setHP(hp);

@@ -7,7 +7,7 @@ import java.util.SplittableRandom;
 public class Sterr extends Adventurer {
     int skillissues, maxSkillissues;
     private SplittableRandom rand;
-
+    public int intVal = 2;
     public Sterr(String name, int hp, int maxhp, int special, int maxspecial){
         this.setName(name);
         this.setHP(hp);

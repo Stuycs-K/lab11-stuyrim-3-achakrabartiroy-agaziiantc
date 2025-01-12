@@ -9,13 +9,15 @@ public abstract class Adventurer{
   private double armor = 1;
   private double bonusatk = 0;
   private int[] regen = new int[2]; //regen[0] will be amt and regen[1] will be turns. For the sake of my sanity regen effects will not stack.
+  private int id;
+
   //Abstract methods are meant to be implemented in child classes.
   /*
   all adventurers must have a custom special
   consumable resource (mana/rage/money/witts etc)
   */
 
-  //give it a short name (fewer than 13 characters)
+  //give it a short name (fewer than 13 characters)){
   public abstract String getSpecialName();
   //accessor methods
   public abstract int getSpecial();
@@ -112,6 +114,8 @@ public abstract class Adventurer{
     this.name = s;
   }
 
+
+  //Scope-creep hell
   public int getStun(){
     return stun;
   }
@@ -153,6 +157,9 @@ public abstract class Adventurer{
   }
   public void setRegen(int[] regen){
     this.regen = regen;
+  }
+  public int getId(){
+    return this.id;
   }
 
 }

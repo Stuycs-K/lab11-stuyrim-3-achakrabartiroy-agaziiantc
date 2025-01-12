@@ -73,8 +73,29 @@ public class Screen implements Runnable {
     public void rmSprite(Sprite sp){
         sprites.remove(sp);
     }
+    public void addGroupSprite(Sprite[] sp){
+        for(Sprite s : sp){
+            addSprite(s);
+        }
+    }
+    public void rmGroupSprite(Sprite[] sp){
+        for(Sprite s : sp){
+            rmSprite(s);
+        }
+    }
     public void addTextSprite(TextSprite ts){textsprites.add(ts);}
     public void rmTextSprite(TextSprite ts){textsprites.remove(ts);}
+    public void addGroupTextSprite(TextSprite[] ts){ //This would've been great if I implemented it earlier.
+        for(TextSprite t : ts){
+            addTextSprite(t);
+        }
+    }
+    public void rmGroupTextSprite(TextSprite[] ts){
+        for(TextSprite t : ts){
+            rmTextSprite(t);
+        }
+    }
+
     public void addColor(int loc, String clr) {
         Colors.put(loc, clr);
     }
@@ -180,11 +201,11 @@ public class Screen implements Runnable {
     public void run(){ //This will make the rendering script run on a separate thread
         while(true) {
             if(!paused) {
-                long time = System.nanoTime();
+                //long time = System.nanoTime();
                 draw();
 
-                    long time2 = System.nanoTime();
-                    System.out.println(((time2 - time) / 1_000_000) + "ms | " + (1_000_000_000 / (time2 - time)) + " FPS"); //Doesn't actually run at this much fps, but it can run at this much fps if the sleep statement below gets made lower
+                    //long time2 = System.nanoTime();
+                    //System.out.println(((time2 - time) / 1_000_000) + "ms | " + (1_000_000_000 / (time2 - time)) + " FPS"); //Doesn't actually run at this much fps, but it can run at this much fps if the sleep statement below gets made lower
 
             }
             try {

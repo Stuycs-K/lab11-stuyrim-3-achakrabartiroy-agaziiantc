@@ -8,6 +8,7 @@ import Util.UniformRandom;
 public class Banfield extends Adventurer{
     int phospholipids, maxPhospholipids;
     private SplittableRandom rand;
+    public int intVal = 1; //I don't know why, but if this is static it breaks everything.
     public Banfield(String name, int hp, int maxhp, int special, int maxspecial){
         this.setName(name);
         this.setHP(hp);

@@ -85,10 +85,10 @@ note for when in class: we forgot support abilities lols
 
 | Mrs. Weinwurm                                                                                                         | Mrs. Fang                                                                                                                                   |
 |:----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
-| Special: Gives a free 100 to teammate, moving their prepardness closer to 1 and increasing armor by 0.2               | Special: Revive a dead teammate and set target's hp to 5.                                                                                   |
+| Special: Gives target a good health insurance policy. +1 Regen on every turn for the next 5 turns.                    | Special: Revive a dead teammate and set target's hp to 5.                                                                                   |
 | Attack: Throws a bucket of pencils at enemies, dealing very light damage to a single target and marking it unprepared | Attack: Threatens a quiz, inflicts minor debuff unless target is prepared. If target unprepared, inflict extra debuff but mark it prepared. |
 | Special Resource: Health Insurance policies                                                                           | Special Resource: CPR kits                                                                                                                  |
-| Support: Gives target a good health insurance policy. +1 Regen on every turn for the next 5 turns. Stacks.            | Support: Gives a speech, +25% to all stats of target for 2 turns. 25% of current health is regened, does not overflow.                      |
+| Support: Gives a free 100 to teammate, moving their prepardness closer to 1 and increasing armor by 0.2               | Support: Gives a speech, +25% to all stats of target for 2 turns. 25% of current health is regened, does not overflow.                      |
 
 # Bosses
 
