@@ -7,7 +7,7 @@ import java.util.SplittableRandom;
 public class Sterr extends Adventurer {
     int skillissues, maxSkillissues;
     private SplittableRandom rand;
-    public int intVal = 2;
+
     public Sterr(String name, int hp, int maxhp, int special, int maxspecial){
         this.setName(name);
         this.setHP(hp);
@@ -115,5 +115,10 @@ public class Sterr extends Adventurer {
         this.skillissues += skillissuesgain;
         return this.getName() + " calls " + other.getName() + " a skill issue. " + other.getName() + " takes " + (this.getSpecial() / 2) + " damage and is now less prepared. " + this.getName() + " gains " + skillissuesgain + " skill issues ";
 
+    }
+
+    @Override
+    public int getId(){
+        return 2;
     }
 }

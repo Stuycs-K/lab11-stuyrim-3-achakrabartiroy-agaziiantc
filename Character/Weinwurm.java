@@ -8,7 +8,6 @@ public class Weinwurm extends Adventurer{
 
     int HIP, maxHIP; //HIP = Health insurance policies
     private SplittableRandom rand;
-    public int intVal = 3;
 
     public Weinwurm(String name, int hp, int maxhp, int special, int maxspecial){
         this.setName(name);
@@ -85,5 +84,10 @@ public class Weinwurm extends Adventurer{
         other.applyDamage(dmg);
         other.modifyPreparedness(-1);
         return this.getName() + " throws pencils at " + other.getName() + ", making them less prepared and dealing " + dmg + " damage.";
+    }
+
+    @Override
+    public int getId(){
+        return 3;
     }
 }

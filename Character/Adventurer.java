@@ -9,7 +9,6 @@ public abstract class Adventurer{
   private double armor = 1;
   private double bonusatk = 0;
   private int[] regen = new int[2]; //regen[0] will be amt and regen[1] will be turns. For the sake of my sanity regen effects will not stack.
-  private int id;
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -55,7 +54,7 @@ public abstract class Adventurer{
 
   //hurt or hinder the target adventurer, consume some special resource
   public abstract String specialAttack(Adventurer other);
-
+  public abstract int getId();
   /*
   standard methods
   */
@@ -157,9 +156,6 @@ public abstract class Adventurer{
   }
   public void setRegen(int[] regen){
     this.regen = regen;
-  }
-  public int getId(){
-    return this.id;
   }
 
 }

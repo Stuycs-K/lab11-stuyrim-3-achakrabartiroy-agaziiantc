@@ -23,6 +23,12 @@ public class Main {
         System.out.println("\033\143");
         screen.draw(); //bandaid fix to stupid bug that I don't want to solve normally
     }
+    public static void sleep(int t){
+        try {
+            TimeUnit.MILLISECONDS.sleep(t);
+        } catch (InterruptedException ignored) {
+        }
+    }
     public static void main(String[] args) {
         /*
         I chose to use this instead of Game.java, since it might unironically be easier to just code the entire thing without a skeleton than to fit it into a skeleton
@@ -128,7 +134,7 @@ public class Main {
         ln2 = null;
         //System.gc();
         TextSprite[] tsarr = new TextSprite[]{
-                new TextSprite("Team builder 2.1", 1, 1), //yep that's right I had to refactor this and add a feature before I even committed the first version
+                new TextSprite("Team builder 2.1.1", 1, 1), //yep that's right I had to refactor this and add a feature before I even committed the first version
                 new TextSprite("Choose 3 characters by inputting their number: ", 2, 2),
                 new TextSprite("1 - Banfield", 3, 4),
                 new TextSprite("2 - Sterr", 3, 5),
@@ -255,7 +261,19 @@ public class Main {
         screen.rmGroupTextSprite(desc); //if you didn't notice yet I am a huge fan of removing everything 50 times just to make sure it gets removed. It doesn't work sadly.
         sendHelp();
         screen.unpause();
-        TextSprite teamText = new TextSprite("Your team is: " + Arrays.toString(plrTeam.team).substring(1, Arrays.toString(plrTeam.team).length()-1), 15, 13);
+        TextSprite teamText = new TextSprite("Your team is: " + Arrays.toString(plrTeam.team).substring(1, Arrays.toString(plrTeam.team).length()-1), 30, 5);
         screen.addTextSprite(teamText);
+        sleep(cd);
+        for(int i=1; i<26; i++){
+            teamText.move(1, 0);
+            sleep((cd / 2) / (i+4));
+        }
+        for(int i=0; i<19; i++){
+            teamText.move(1, 0);
+            teamText.text = Arrays.copyOfRange(teamText.text, 0, teamText.text.length-1);
+            sleep((cd / 2) / (i+30));
+        }
+        screen.rmTextSprite(teamText);
+
     }
 }

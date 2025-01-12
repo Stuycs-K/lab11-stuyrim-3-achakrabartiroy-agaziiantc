@@ -8,7 +8,7 @@ import Util.UniformRandom;
 public class Banfield extends Adventurer{
     int phospholipids, maxPhospholipids;
     private SplittableRandom rand;
-    public int intVal = 1; //I don't know why, but if this is static it breaks everything.
+    public int id = 1; //I don't kintValintValnow why, but if this is static it breaks everything.
     public Banfield(String name, int hp, int maxhp, int special, int maxspecial){
         this.setName(name);
         this.setHP(hp);
@@ -78,5 +78,10 @@ public class Banfield extends Adventurer{
         other.modifyPreparedness(-1);
         other.applyDamage(2);
         return this.getName() + " gives " + other.getName() + " a fake quiz, making them less prepared and dealing 2 damage.";
+    }
+
+    @Override
+    public int getId(){
+        return 1;
     }
 }
