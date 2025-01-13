@@ -20,6 +20,12 @@ public class Banfield extends Adventurer{
     public Banfield(String name){
         this(name, 10, 10, 10, 10);
     }
+
+    @Override
+    public Adventurer clone() {
+        return new Banfield(this.getName(), this.getHP(), this.getmaxHP(), this.getSpecial(), this.getSpecialMax());
+    }
+
     @Override
     public String getSpecialName() {
         return "Phospholipids";

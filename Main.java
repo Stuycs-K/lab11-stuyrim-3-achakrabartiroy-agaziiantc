@@ -8,6 +8,8 @@ import Character.Team;
 import Character.Banfield;
 import Character.Sterr;
 import Character.Weinwurm;
+import Character.AdventurerSheet;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -16,11 +18,11 @@ import java.util.concurrent.TimeUnit;
 public class Main {
     public static final int cd = 750;
     public static Screen screen = new Screen(75, 30); //Do not touch this.
-    public static void sendHelp(){
+    public static void sendHelp(){ //call this function whenever you touch screen rendering
         try {
             TimeUnit.MILLISECONDS.sleep(cd / 100);
         } catch (InterruptedException ignored) {}
-        System.out.println("\033\143");
+        System.out.println("\033\143"); //profilaktika
         screen.draw(); //bandaid fix to stupid bug that I don't want to solve normally
     }
     public static void sleep(int t){
@@ -92,6 +94,7 @@ public class Main {
         screen.addTextSprite(prompt);
         screen.pause();
         System.out.println("\033\143");
+        sendHelp(); //this function name is slowly starting to become less of a joke and more of a cry for help
         screen.draw(); //juuust to make sure
         sendHelp();
         Text.go(11, 4);
@@ -114,6 +117,7 @@ public class Main {
 
         Input.clear();
         screen.unpause();
+        sendHelp();
         TextSprite output = new TextSprite("Your team name is: " + plrTeam.name, 1, 6);
         screen.addTextSprite(output);
         try {
@@ -261,19 +265,38 @@ public class Main {
         screen.rmGroupTextSprite(desc); //if you didn't notice yet I am a huge fan of removing everything 50 times just to make sure it gets removed. It doesn't work sadly.
         sendHelp();
         screen.unpause();
-        TextSprite teamText = new TextSprite("Your team is: " + Arrays.toString(plrTeam.team).substring(1, Arrays.toString(plrTeam.team).length()-1), 30, 5);
+        TextSprite teamText = new TextSprite("Your team is: " + Arrays.toString(plrTeam.team).substring(1, Arrays.toString(plrTeam.team).length()-1), 20, 5);
         screen.addTextSprite(teamText);
         sleep(cd);
-        for(int i=1; i<26; i++){
+        for(int i=1; i<41; i++){
             teamText.move(1, 0);
             sleep((cd / 2) / (i+4));
         }
-        for(int i=0; i<19; i++){
+        for(int i=0; i<14; i++){
             teamText.move(1, 0);
-            teamText.text = Arrays.copyOfRange(teamText.text, 0, teamText.text.length-1);
-            sleep((cd / 2) / (i+30));
+            teamText.text = Arrays.copyOfRange(teamText.text, 0, teamText.text.length - 1);
+            sleep((cd / 2) / (i+45));
         }
         screen.rmTextSprite(teamText);
+
+        Team enemyTeam = AdventurerSheet.randomTeam();
+        teamText = new TextSprite("Enemy team is: " + Arrays.toString(enemyTeam.team).substring(1, Arrays.toString(enemyTeam.team).length()-1), 20, 5);
+        screen.addTextSprite(teamText);
+        sleep(cd);
+        for(int i=1; i<41; i++){
+            teamText.move(1, 0);
+            sleep((cd / 2) / (i+4));
+        }
+        for(int i=0; i<14; i++){
+            teamText.move(1, 0);
+            teamText.text = Arrays.copyOfRange(teamText.text, 0, teamText.text.length-1);
+            sleep((cd / 2) / (i+45));
+        }
+        screen.rmTextSprite(teamText);
+        //the pain never end
+        //but this should be the end of the intro screen
+        //can start making actual game now
+        //if ONLY this 2 person project had more than 1 person working on it. But no I just had to get nerfed with this guy. I can literally complain about my group mate in the bloody MAIN.JAVA file because what's he gonna do??? Start editing the code????? Then he better get to doing that!!!!!!!!! Arko if you are reading this GET OFF CHESS.COM AND GET ON VIM!!!!!!!!!!!!!!!!!!!!!!!!!! START APPLYING THE "My extensive experience in computer science" YOU YAP ON FACEBOOK ABOUT AFANKJHBKJSGJHKJGHDSNJKLDFHSGLAJDFnbthgthjghjjghkjkuiiopkjmnbvcxvcvbrthyjjuk
 
     }
 }
