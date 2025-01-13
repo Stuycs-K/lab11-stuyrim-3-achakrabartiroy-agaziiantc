@@ -22,6 +22,10 @@ public class Sterr extends Adventurer {
     }
 
     @Override
+    public String toString(){
+        return "Sterr-" + this.getName();
+    }
+    @Override
     public Adventurer clone() {
         return new Sterr(this.getName(), this.getHP(), this.getmaxHP(), this.getSpecial(), this.getSpecialMax());
     }

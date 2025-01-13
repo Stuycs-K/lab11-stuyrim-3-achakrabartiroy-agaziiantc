@@ -26,7 +26,10 @@ public class Weinwurm extends Adventurer{
     public Adventurer clone() {
         return new Weinwurm(this.getName(), this.getHP(), this.getmaxHP(), this.getSpecial(), this.getSpecialMax());
     }
-
+    @Override
+    public String toString(){
+        return "Weinwurm-" + this.getName();
+    }
     @Override
     public String getSpecialName() {
         return "Health insurance policies";

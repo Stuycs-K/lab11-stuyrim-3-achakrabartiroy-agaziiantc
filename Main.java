@@ -139,7 +139,7 @@ public class Main {
         ln2 = null;
         //System.gc();
         TextSprite[] tsarr = new TextSprite[]{
-                new TextSprite("Team builder 2.1.1", 1, 1), //yep that's right I had to refactor this and add a feature before I even committed the first version
+                new TextSprite("Team builder 2.1.2", 1, 1), //yep that's right I had to refactor this and add a feature before I even committed the first version
                 new TextSprite("Choose 3 characters by inputting their number: ", 2, 2),
                 new TextSprite("1 - Banfield", 3, 4),
                 new TextSprite("2 - Sterr", 3, 5),
@@ -161,7 +161,7 @@ public class Main {
                 } catch (InterruptedException ignored) {}
             }
             sendHelp();
-            System.out.println(Arrays.toString(plrTeam.team));
+            //System.out.println(Arrays.toString(plrTeam.team));
             String input = Input.getFirst();
             if(input.equals("1") && !(plrTeam.hasA(1))){
                 desc = new TextSprite[]{
@@ -176,6 +176,7 @@ public class Main {
                 screen.rmTextSprite(tsarr[Integer.parseInt(input)+1]);
                 screen.addGroupTextSprite(desc);
                 screen.draw();
+                Text.go(11, 20);
                 Input.clear(); //cannot be trusting the user to NOT input 2 lines within 1ms.
                 while (Input.isEmpty()) {
                     //just do nothing
@@ -206,6 +207,7 @@ public class Main {
                 screen.rmTextSprite(tsarr[Integer.parseInt(input)+1]);
                 screen.addGroupTextSprite(desc);
                 screen.draw();
+                Text.go(11, 20);
                 Input.clear(); //cannot be trusting the user to NOT input 2 lines within 1ms.
                 while (Input.isEmpty()) {
                     //just do nothing
@@ -236,6 +238,7 @@ public class Main {
                 screen.rmTextSprite(tsarr[Integer.parseInt(input)+1]);
                 screen.addGroupTextSprite(desc);
                 screen.draw();
+                Text.go(11, 20);
                 Input.clear(); //cannot be trusting the user to NOT input 2 lines within 1ms.
                 while (Input.isEmpty()) {
                     //just do nothing
@@ -266,9 +269,9 @@ public class Main {
         screen.rmGroupTextSprite(desc); //if you didn't notice yet I am a huge fan of removing everything 50 times just to make sure it gets removed. It doesn't work sadly.
         sendHelp();
         screen.unpause();
-        TextSprite teamText = new TextSprite("Your team is: " + Arrays.toString(plrTeam.team).substring(1, Arrays.toString(plrTeam.team).length()-1), 20, 5);
+        TextSprite teamText = new TextSprite("Your team is: " + Arrays.toString(plrTeam.team).substring(1, Arrays.toString(plrTeam.team).length()-1), 10, 5);
         screen.addTextSprite(teamText);
-        sleep(cd);
+        sleep(cd*3);
         for(int i=1; i<41; i++){
             teamText.move(1, 0);
             sleep((cd / 2) / (i+4));
@@ -281,9 +284,9 @@ public class Main {
         screen.rmTextSprite(teamText);
 
         Team enemyTeam = AdventurerSheet.randomTeam();
-        teamText = new TextSprite("Enemy team is: " + Arrays.toString(enemyTeam.team).substring(1, Arrays.toString(enemyTeam.team).length()-1), 20, 5);
+        teamText = new TextSprite("Enemy team is: " + Arrays.toString(enemyTeam.team).substring(1, Arrays.toString(enemyTeam.team).length()-1), 10, 5);
         screen.addTextSprite(teamText);
-        sleep(cd);
+        sleep(cd*3);
         for(int i=1; i<41; i++){
             teamText.move(1, 0);
             sleep((cd / 2) / (i+4));

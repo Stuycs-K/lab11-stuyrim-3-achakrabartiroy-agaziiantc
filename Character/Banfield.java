@@ -21,7 +21,10 @@ public class Banfield extends Adventurer{
     public Banfield(String name){
         this(name, 10, 10, 10, 10);
     }
-
+    @Override
+    public String toString(){
+        return "Banfield-" + this.getName();
+    }
     @Override
     public Adventurer clone() {
         return new Banfield(this.getName(), this.getHP(), this.getmaxHP(), this.getSpecial(), this.getSpecialMax());

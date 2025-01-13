@@ -88,9 +88,10 @@ public abstract class Adventurer{
   }
 
   //toString method
-  public String toString(){
-    return this.getName();
-  }
+  //public String toString(){
+  //  return this.getName();
+  //}
+  public abstract String toString();
 
   //Get Methods
   public String getName(){
