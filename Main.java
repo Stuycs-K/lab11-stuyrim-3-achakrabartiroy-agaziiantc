@@ -41,6 +41,7 @@ public class Main {
             The entire game WILL be hard coded.
             Future me who will have to fix some obscure bug is going to hate current me.
             0 good coding practices will be followed.
+            The entire thing is being held up by sticks and stones.
             Viewer discretion is advised.
          */
 

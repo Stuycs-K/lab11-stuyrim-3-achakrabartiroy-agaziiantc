@@ -12,13 +12,18 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+
+
+
+
 public class Screen implements Runnable {
     private static int width, height; //having more than one would not be useful, so this will be static.
     private OutputStream buffer;
     private static byte[] instance; //rendering is done by iterating over every byte in this array and mapping it to a corresponding character. If you need a character that isn't in the byte range you have bigger problems. It is static because I want it to be the same across multiple screens (in the future if I have the time I will implement LAN multiplayer)
     private ArrayList<Sprite> sprites = new ArrayList<>();
     private ArrayList<TextSprite> textsprites = new ArrayList<>();
-    HashMap<Integer, String> Colors = new HashMap<>();
+    private ArrayList<Border> borders = new ArrayList<>();
+	HashMap<Integer, String> Colors = new HashMap<>();
     private int c = 0;
     private boolean paused = false;
     public Screen(int width, int height, int outputtype) {//Using outputtype because if I have the time to do this then later on I want to try adding LAN multiplayer
@@ -102,6 +107,26 @@ public class Screen implements Runnable {
     public void rmColor(int loc) {
         Colors.remove(loc);
     }
+
+	public void addBorder(Border b){
+		borders.add(b);
+	}
+	public void rmBorder(Border b){
+		borders.remove(b);
+	}
+	private void drawBorders(){
+		for(int i=0; i<borders.size(); i++){
+			if(borders.get(i).dir == 0){
+				for(int j=0; j<width; j++){
+					this.instance[borders.get(i).loc*width + j] = '=';
+				}
+			}else{
+				for(int j=0; j<height; j++){
+					this.instance[borders.get(i).loc + width*j] = '=';
+				}
+			}
+		}
+	}
     private void drawSprite(Sprite sp){
 
 		//offset SHOULD be y * this.width + x. If it is not that then I messed up in drawBox().
@@ -166,9 +191,13 @@ public class Screen implements Runnable {
         Arrays.fill(instance, (byte) ' '); //Reset the map on every iteration
         Colors.clear(); //Reset the colors too. Yes this is really unoptimized but my goal is to run this at a minimum of 10 fps so I think im doing just fine
         this.drawBox();
+
+        this.drawBorders();
+
         for(int i=0; i<this.textsprites.size(); i++){
             drawTextSprite(this.textsprites.get(i));
         }
+
         for(int i=0; i<this.sprites.size(); i++){
             drawSprite(this.sprites.get(i));
         } //Sprites render on top of the text

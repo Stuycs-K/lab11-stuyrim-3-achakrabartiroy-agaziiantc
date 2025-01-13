@@ -1,5 +1,6 @@
 import Render.Screen;
 import Render.Text;
+import Render.Border;
 import Util.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class Test {
         TextSprite title = new TextSprite("abcdefghijklmnop1234567890", 5, 5);
         List<String> queue = new LinkedList<>(); //possibly the first recorded voluntary usage of linked list in human history
         Thread game = new Thread(screen);
+		Border skib = new Border(1, 40);
+		screen.addBorder(skib);
         game.start();
         screen.addSprite(yes);
         screen.addTextSprite(title);
@@ -43,7 +46,7 @@ public class Test {
                 if (i.sp.x + 5 == Screen.getWidth() || i.sp.x == 0) {
                     i.vectx *= -1;
                 }
-                if (i.sp.y + 3 == Screen.getHeight() || i.sp.y == 0) {
+                if (i.sp.y + 5 == Screen.getHeight() || i.sp.y == 0) {
                     i.vecty *= -1;
                 }
             }
