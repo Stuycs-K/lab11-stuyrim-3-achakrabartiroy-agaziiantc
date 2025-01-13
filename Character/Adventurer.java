@@ -11,6 +11,7 @@ public abstract class Adventurer{
   private double armor = 1;
   private double bonusatk = 0;
   private int[] regen = new int[2]; //regen[0] will be amt and regen[1] will be turns. For the sake of my sanity regen effects will not stack.
+  private int atk, rcv;
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -116,6 +117,18 @@ public abstract class Adventurer{
 
   public void setName(String s){
     this.name = s;
+  }
+  public void setATK(int atk) {
+    this.atk = atk;
+  }
+  public void setRCV(int rcv) {
+    this.rcv = rcv; // amount of hp recovered per turn automatically
+  }
+  public int getATK() {
+    return atk;
+  }
+  public int getRCV() {
+    return rcv;
   }
 
 
