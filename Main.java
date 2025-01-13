@@ -1,3 +1,4 @@
+import Render.Border;
 import Render.Screen;
 import Render.Text;
 import Util.Listener;
@@ -138,6 +139,7 @@ public class Main {
         output = null;
         ln2 = null;
         //System.gc();
+        sendHelp();
         TextSprite[] tsarr = new TextSprite[]{
                 new TextSprite("Team builder 2.1.2", 1, 1), //yep that's right I had to refactor this and add a feature before I even committed the first version
                 new TextSprite("Choose 3 characters by inputting their number: ", 2, 2),
@@ -153,6 +155,7 @@ public class Main {
             screen.unpause();
             screen.draw();
             screen.pause();
+            sendHelp();
             Text.go(11, 20);
             while (Input.isEmpty()) {
                 //just do nothing
@@ -269,39 +272,41 @@ public class Main {
         screen.rmGroupTextSprite(desc); //if you didn't notice yet I am a huge fan of removing everything 50 times just to make sure it gets removed. It doesn't work sadly.
         sendHelp();
         screen.unpause();
-        TextSprite teamText = new TextSprite("Your team is: " + Arrays.toString(plrTeam.team).substring(1, Arrays.toString(plrTeam.team).length()-1), 10, 5);
+        TextSprite teamText = new TextSprite("Your team is: " + Arrays.toString(plrTeam.team).substring(1, Arrays.toString(plrTeam.team).length()-1), 2, 5);
         screen.addTextSprite(teamText);
         sleep(cd*3);
-        for(int i=1; i<41; i++){
+        for(int i=1; i<50; i++){
             teamText.move(1, 0);
             sleep((cd / 2) / (i+4));
         }
         for(int i=0; i<14; i++){
             teamText.move(1, 0);
             teamText.text = Arrays.copyOfRange(teamText.text, 0, teamText.text.length - 1);
-            sleep((cd / 2) / (i+45));
+            sleep((cd / 2) / (i+54));
         }
         screen.rmTextSprite(teamText);
-
+        sendHelp();
         Team enemyTeam = AdventurerSheet.randomTeam();
-        teamText = new TextSprite("Enemy team is: " + Arrays.toString(enemyTeam.team).substring(1, Arrays.toString(enemyTeam.team).length()-1), 10, 5);
+        teamText = new TextSprite("Enemy team is: " + Arrays.toString(enemyTeam.team).substring(1, Arrays.toString(enemyTeam.team).length()-1), 2, 5);
         screen.addTextSprite(teamText);
         sleep(cd*3);
-        for(int i=1; i<41; i++){
+        for(int i=1; i<50; i++){
             teamText.move(1, 0);
             sleep((cd / 2) / (i+4));
         }
         for(int i=0; i<14; i++){
             teamText.move(1, 0);
             teamText.text = Arrays.copyOfRange(teamText.text, 0, teamText.text.length-1);
-            sleep((cd / 2) / (i+45));
+            sleep((cd / 2) / (i+54));
         }
         screen.rmTextSprite(teamText);
         //the pain never end
         //but this should be the end of the intro screen
         //can start making actual game now
         //if ONLY this 2 person project had more than 1 person working on it. But no I just had to get nerfed with this guy. I can literally complain about my group mate in the bloody MAIN.JAVA file because what's he gonna do??? Start editing the code????? Then he better get to doing that!!!!!!!!! Arko if you are reading this GET OFF CHESS.COM AND GET ON VIM!!!!!!!!!!!!!!!!!!!!!!!!!! START APPLYING THE "My extensive experience in computer science" YOU YAP ON FACEBOOK ABOUT AFANKJHBKJSGJHKJGHDSNJKLDFHSGLAJDFnbthgthjghjjghkjkuiiopkjmnbvcxvcvbrthyjjuk
-
-
+        Border midDiv = new Border(1, 38);
+        Border topDiv = new Border(0, 10);
+        screen.addBorder(midDiv);
+        screen.addBorder(topDiv);
     }
 }
