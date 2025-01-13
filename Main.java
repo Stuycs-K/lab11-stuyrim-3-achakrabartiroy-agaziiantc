@@ -333,12 +333,12 @@ public class Main {
 			
 			textwall.add(new TextSprite[]{
 				new TextSprite(plr.toString(), 1, 11+i*5),
-				new TextSprite("HP: " + plr.getHP() + "/" + plr.getmaxHP() + " (" + plr.getRegen[1] + plr.getRCV() + ")", 1, 12+i*5),
-				new TextSprite("Special: " + plr.getSpecial() + "/" + plr.getSpecialMax() + " (" + plr.getRegen[1] + plr.getRCV() + ")", 1, 13+i*5),
+				new TextSprite("HP: " + plr.getHP() + "/" + plr.getmaxHP() + " (" + (plr.getRegen()[1] + plr.getRCV()) + ")", 1, 12+i*5),
+				new TextSprite("Special: " + plr.getSpecial() + "/" + plr.getSpecialMax(), 1, 13+i*5),
 				
 				new TextSprite(en.toString(), 40, 11+i*5),
-				new TextSprite("HP: " + plr.getHP() + "/" + plr.getmaxHP(), 40, 12+i*5),
-				new TextSprite("Special: " + plr.getSpecial() + "/" + plr.getSpecialMax(), 40, 13+i*5),
+				new TextSprite("HP: " + en.getHP() + "/" + en.getmaxHP() + " (" + (en.getRegen()[1] + en.getRCV()) + ")", 40, 12+i*5),
+				new TextSprite("Special: " + en.getSpecial() + "/" + en.getSpecialMax(), 40, 13+i*5),
 
 			});
 			
