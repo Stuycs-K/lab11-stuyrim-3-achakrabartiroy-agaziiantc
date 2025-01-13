@@ -299,5 +299,6 @@ public class Main {
         //can start making actual game now
         //if ONLY this 2 person project had more than 1 person working on it. But no I just had to get nerfed with this guy. I can literally complain about my group mate in the bloody MAIN.JAVA file because what's he gonna do??? Start editing the code????? Then he better get to doing that!!!!!!!!! Arko if you are reading this GET OFF CHESS.COM AND GET ON VIM!!!!!!!!!!!!!!!!!!!!!!!!!! START APPLYING THE "My extensive experience in computer science" YOU YAP ON FACEBOOK ABOUT AFANKJHBKJSGJHKJGHDSNJKLDFHSGLAJDFnbthgthjghjjghkjkuiiopkjmnbvcxvcvbrthyjjuk
 
+
     }
 }

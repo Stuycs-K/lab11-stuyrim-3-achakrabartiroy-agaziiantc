@@ -30,7 +30,9 @@ public class Test {
         List<String> queue = new LinkedList<>(); //possibly the first recorded voluntary usage of linked list in human history
         Thread game = new Thread(screen);
 		Border skib = new Border(1, 40);
+		Border skib2 = new Border(0, 15);
 		screen.addBorder(skib);
+		screen.addBorder(skib2);
         game.start();
         screen.addSprite(yes);
         screen.addTextSprite(title);

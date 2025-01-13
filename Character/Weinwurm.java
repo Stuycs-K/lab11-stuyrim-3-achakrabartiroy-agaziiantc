@@ -1,5 +1,6 @@
 package Character;
 
+import Util.Sprite;
 import Util.UniformRandom;
 
 import java.util.SplittableRandom;
@@ -8,7 +9,7 @@ public class Weinwurm extends Adventurer{
 
     int HIP, maxHIP; //HIP = Health insurance policies
     private SplittableRandom rand;
-
+    private Sprite sp;
     public Weinwurm(String name, int hp, int maxhp, int special, int maxspecial){
         this.setName(name);
         this.setHP(hp);
@@ -44,6 +45,16 @@ public class Weinwurm extends Adventurer{
     @Override
     public void setSpecial(int n) {
         this.HIP = n;
+    }
+
+    @Override
+    public Sprite getSprite() {
+        return sp;
+    }
+
+    @Override
+    public void setSprite(Sprite sprite) {
+        this.sp = sprite;
     }
 
     @Override
@@ -94,4 +105,6 @@ public class Weinwurm extends Adventurer{
     public int getId(){
         return 3;
     }
+
+
 }

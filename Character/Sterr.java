@@ -1,5 +1,6 @@
 package Character;
 
+import Util.Sprite;
 import Util.UniformRandom;
 
 import java.util.SplittableRandom;
@@ -7,7 +8,7 @@ import java.util.SplittableRandom;
 public class Sterr extends Adventurer {
     int skillissues, maxSkillissues;
     private SplittableRandom rand;
-
+    private Sprite sp;
     public Sterr(String name, int hp, int maxhp, int special, int maxspecial){
         this.setName(name);
         this.setHP(hp);
@@ -47,7 +48,15 @@ public class Sterr extends Adventurer {
         }
     }
 
+    @Override
+    public Sprite getSprite() {
+        return sp;
+    }
 
+    @Override
+    public void setSprite(Sprite sprite) {
+        this.sp = sprite;
+    }
 
     @Override
     public String specialAttack(Adventurer other) { //gamblecore aesthetic

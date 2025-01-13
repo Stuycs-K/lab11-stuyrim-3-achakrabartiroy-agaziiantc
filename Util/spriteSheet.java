@@ -78,6 +78,57 @@ public class spriteSheet {
 				Util.clr(Text.WHITE)
 			});
 
+	public static final Sprite StickmanHit1 = new Sprite(
+			new int[][]{
+					{2, 0},
+					{0, 1},{1, 1},{2, 1},
+					{0, 2},
+			},
+			new byte[]{
+							 'o',
+					92, '|', '/',
+					'^'
+			},
+			new String[]{
+					Util.clr(Text.RED),
+					Util.clr(Text.WHITE), Util.clr(Text.RED), Util.clr(Text.WHITE),
+					Util.clr(Text.WHITE)
+			});
+	public static final Sprite StickmanHit2 = new Sprite( //mirrored version of the other one
+			new int[][]{
+					{0, 0},
+					{0, 1},{1, 1},{2, 1},
+					{2, 2},
+			},
+			new byte[]{
+					'o',
+					'/', '|', 92,
+					         '^'
+			},
+			new String[]{
+					Util.clr(Text.RED),
+					Util.clr(Text.WHITE), Util.clr(Text.RED), Util.clr(Text.WHITE),
+					Util.clr(Text.WHITE)
+			});
+
+
+	public static final Sprite StickmanAttacking1 = new Sprite(
+			new int[][]{
+					{1, 0},
+					{0, 1},{1, 1},{2, 1},
+					{1, 2},
+			},
+			new byte[]{
+					     'o',
+					'_', '|', '_', //TODO: figure out a better texture cause this sucks
+					     '^'
+			},
+			new String[]{
+					Util.clr(Text.WHITE),
+					Util.clr(Text.YELLOW), Util.clr(Text.WHITE), Util.clr(Text.YELLOW),
+					Util.clr(Text.WHITE)
+			});
+
 
 
 }

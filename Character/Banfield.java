@@ -1,13 +1,14 @@
 package Character;
 
 import Util.Util;
-
+import Util.Sprite;
 import java.util.SplittableRandom;
 import Util.UniformRandom;
 
 public class Banfield extends Adventurer{
     int phospholipids, maxPhospholipids;
     private SplittableRandom rand;
+    private Sprite sp;
     public int id = 1; //I don't kintValintValnow why, but if this is static it breaks everything.
     public Banfield(String name, int hp, int maxhp, int special, int maxspecial){
         this.setName(name);
@@ -47,6 +48,16 @@ public class Banfield extends Adventurer{
         if(phospholipids > maxPhospholipids){
             phospholipids = maxPhospholipids;
         }
+    }
+
+    @Override
+    public Sprite getSprite() {
+        return sp;
+    }
+
+    @Override
+    public void setSprite(Sprite sprite) {
+        this.sp = sprite;
     }
 
     @Override
