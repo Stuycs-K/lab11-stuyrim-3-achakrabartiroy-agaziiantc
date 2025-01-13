@@ -24,6 +24,10 @@ public class Sprite {
 		this.x+=x;
 		this.y+=y;
 	}
+	public void teleport(int x, int y){
+		this.x=x;
+		this.y=y;
+	}
 
 	@Override
 	public boolean equals(Object o) {

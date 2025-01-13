@@ -10,6 +10,7 @@ import Character.Banfield;
 import Character.Sterr;
 import Character.Weinwurm;
 import Character.AdventurerSheet;
+import Character.Adventurer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +18,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static final int cd = 750;
+    public static final int cd = 7;//50;
     public static Screen screen = new Screen(75, 30); //Do not touch this.
     public static void sendHelp(){ //call this function whenever you touch screen rendering
         try {
@@ -303,10 +304,50 @@ public class Main {
         //the pain never end
         //but this should be the end of the intro screen
         //can start making actual game now
-        //if ONLY this 2 person project had more than 1 person working on it. But no I just had to get nerfed with this guy. I can literally complain about my group mate in the bloody MAIN.JAVA file because what's he gonna do??? Start editing the code????? Then he better get to doing that!!!!!!!!! Arko if you are reading this GET OFF CHESS.COM AND GET ON VIM!!!!!!!!!!!!!!!!!!!!!!!!!! START APPLYING THE "My extensive experience in computer science" YOU YAP ON FACEBOOK ABOUT AFANKJHBKJSGJHKJGHDSNJKLDFHSGLAJDFnbthgthjghjjghkjkuiiopkjmnbvcxvcvbrthyjjuk
         Border midDiv = new Border(1, 38);
         Border topDiv = new Border(0, 10);
         screen.addBorder(midDiv);
         screen.addBorder(topDiv);
+		for(int i=0; i<3; i++){
+			Sprite spplr = spriteSheet.Stickman.clone();
+			screen.addSprite(spplr);
+			spplr.teleport(9 + i * 6, 4);
+			Sprite spen = spriteSheet.Stickman.clone();
+			screen.addSprite(spen);
+			spen.teleport(47 + i * 6, 4);
+		}
+		/*
+		The screen is to be divided into 4 sections
+		=======================================
+		=plr sprites       = enemy sprites    =
+		======================================= vertical divisor at 38
+		=				   =                  = horizontal divisor at 10
+		=plr stats/actions = enemy stats      =
+		=======================================
+		*/
+
+		ArrayList<TextSprite[]> textwall = new ArrayList<>(); //scope voodoo magic, I need this thing to not be gc'd or bad things will happen.
+		for(int i=0; i<3; i++){
+			Adventurer plr = plrTeam.team[i]; //TBH it would probably be a good idea to refactor this to be an accessor method but too much effort for literally no benefit other than maybe escaping Mr K's wrath which I am willing to tank
+			Adventurer en = enemyTeam.team[i];
+			
+			textwall.add(new TextSprite[]{
+				new TextSprite(plr.toString(), 1, 11+i*5),
+				new TextSprite("HP: " + plr.getHP() + "/" + plr.getmaxHP(), 1, 12+i*5),
+				new TextSprite("Special: " + plr.getSpecial() + "/" + plr.getSpecialMax(), 1, 13+i*5),
+				
+				new TextSprite(en.toString(), 40, 11+i*5),
+				new TextSprite("HP: " + plr.getHP() + "/" + plr.getmaxHP(), 40, 12+i*5),
+				new TextSprite("Special: " + plr.getSpecial() + "/" + plr.getSpecialMax(), 40, 13+i*5),
+
+			});
+			
+		}
+		for(int i=0; i<textwall.size(); i++){
+			screen.addGroupTextSprite(textwall.get(i)); //cursed stuff, I do not like this.
+		}
+		sendHelp();
+	
+	
     }
 }
