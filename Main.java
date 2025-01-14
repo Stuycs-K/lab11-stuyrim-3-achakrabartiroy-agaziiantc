@@ -18,7 +18,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static final int cd = 7;//50;
+    public static final int cd = 750;
     public static Screen screen = new Screen(75, 30); //Do not touch this.
     public static void sendHelp(){ //call this function whenever you touch screen rendering
         try {
