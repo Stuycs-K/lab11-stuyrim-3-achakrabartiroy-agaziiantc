@@ -167,7 +167,7 @@ public class Screen implements Runnable {
                 //text overflow handling
                 //ln++;
                 //you can tell a lot about how well something runs by seeing how many //s it has
-                x = sp.x;
+                x = sp.x+1;
                 y += 1;
                 loc = (x) + (y) * width;
                 if(loc >= width * height){

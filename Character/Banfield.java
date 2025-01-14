@@ -10,12 +10,11 @@ public class Banfield extends Adventurer{
     private SplittableRandom rand;
     private Sprite sp;
     public int id = 1; //I don't kintValintValnow why, but if this is static it breaks everything.
-    public Banfield(String name, int hp, int maxhp, int atk, int rcv, int special, int maxspecial){
+    public Banfield(String name, int hp, int maxhp, int special, int maxspecial, int rcv){
         this.setName(name);
         this.setHP(hp);
         this.setmaxHP(maxhp);
         this.setSpecial(special);
-        this.setATK(atk);
         this.setRCV(rcv);
         this.maxPhospholipids = maxspecial;
         this.rand = UniformRandom.rand.split();
@@ -35,7 +34,7 @@ public class Banfield extends Adventurer{
     }
     @Override
     public Adventurer clone() {
-        return new Banfield(this.getName(), this.getHP(), this.getmaxHP(), this.getATK(), this.getRCV(), this.getSpecial(), this.getSpecialMax());
+        return new Banfield(this.getName(), this.getHP(), this.getmaxHP(), this.getSpecial(), this.getSpecialMax(), this.getRCV());
     }
 
     @Override

@@ -129,6 +129,41 @@ public class spriteSheet {
 					Util.clr(Text.WHITE)
 			});
 
-
+	public static final Sprite StickmanSupport1 = new Sprite(
+			new int[][]{
+					{1, 0},
+					{0, 1},{1, 1},{2, 1},
+					{1, 2},
+			},
+			new byte[]{
+					'o',
+					'/', '|', 92,
+					'^'
+			},
+			new String[]{
+					Util.clr(Text.BLUE),
+					Util.clr(Text.WHITE), Util.clr(Text.WHITE), Util.clr(Text.WHITE),
+					Util.clr(Text.BLUE)
+			});
+	public static final Sprite arrow1 = new Sprite(
+			new int[][]{
+					{0, 0}
+			},
+			new byte[]{
+					'<'
+			},
+			new String[]{
+					Util.clr(Text.WHITE)
+			});
+	public static final Sprite arrowred = new Sprite(
+			new int[][]{
+					{0, 0}
+			},
+			new byte[]{
+					'<'
+			},
+			new String[]{
+					Util.clr(Text.RED)
+			});
 
 }
