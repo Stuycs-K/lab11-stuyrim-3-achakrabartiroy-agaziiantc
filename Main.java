@@ -366,6 +366,10 @@ public class Main {
         int whichOpponent = 0;
         int turn = 0;
         String input = "";
+        for(int i=0; i<3; i++){
+            plrTeam.team[i].team = plrTeam;
+            enemyTeam.team[i].team = enemyTeam; //definitely the worst way of doing this, but I do not care
+        }
         Sprite pointer = spriteSheet.arrow1.clone();
         byte[] promptText1 = "Input 1 to attack, 2 to support, 3 to special attack, 4 to restore special, q to quit, anything else to skip turn".getBytes();
         byte[] promptText2 = "Input a number to target, 0-2 is your team, and 3-5 is the enemy team.".getBytes();
@@ -373,10 +377,12 @@ public class Main {
         output = new TextSprite("", 39, 25);
         screen.addSprite(pointer);
         screen.addTextSprite(prompt);
+        screen.addTextSprite(output);
         String[] inp = new String[2]; //just so that I don't write this array on every iteration of the loop
         while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))) {
             //Read user input
             for(whichPlayer=0; whichPlayer<3; whichPlayer++){
+                sendHelp();
                 for(int i=0; i<3; i++){
                     //spaghetti but it does its job
                     plrTeam.team[i].getSprite().RCE(spriteSheet.Stickman);
@@ -395,6 +401,10 @@ public class Main {
                 input = (Input.removeFirst()); //player can pre-fire turns, this functionality can be removed by clearing input after reading it, so this is a design choice.
                 inp[0] = input;
                 prompt.text = promptText2;
+                if(!"1234".contains(inp[0])){
+                    //player did not do a valid turn. could be lenient and let the player reselect turn but will not do that.
+                    continue;
+                }
                 if(inp[0].equals("4")){
                     //if the player does restore special, it should not let the player select a target because that would be stupid.
                     plrTeam.team[whichPlayer].restoreSpecial(3); //I completely forgot all the balancing numbers by now so this is probably not very well balanced but at this point I simply no longer care
@@ -416,15 +426,15 @@ public class Main {
                     }
                     switch (inp[0]) {
                         case "1":
-                            plrTeam.team[whichPlayer].attack(target);
+                            output.text = plrTeam.team[whichPlayer].attack(target).getBytes();
                             target.getSprite().RCE(spriteSheet.StickmanHit1);
                             break;
                         case "2":
-                            plrTeam.team[whichPlayer].support(target);
+                            output.text = plrTeam.team[whichPlayer].support(target).getBytes();
                             target.getSprite().RCE(spriteSheet.StickmanSupport1);
                             break;
                         case "3":
-                            plrTeam.team[whichPlayer].specialAttack(target); //TODO: this doesn't modify stats for some reason. Presumably this is a very big issue.
+                            output.text = plrTeam.team[whichPlayer].specialAttack(target).getBytes(); //TODO: this doesn't modify stats for some reason. Presumably this is a very big issue.
                             target.getSprite().RCE(spriteSheet.StickmanHit1);
                             break;
                         default:

@@ -68,6 +68,7 @@ public class Sterr extends Adventurer {
             return this.getName() + " attempts to give a test, but no one is skill issued enough.";
         }
         Team target = other.team; //50% chance of this line crashing and burning in like 3 days when I start actually implementing the game.
+        //STATUS UPDATE: the line crashed and burned 3 days after I wrote it
         StringBuilder out = new StringBuilder();
         out.append(this.getName() + " Assigns a test to the enemy team. ");
         for(int i = 0; i < target.team.length; i++) {
