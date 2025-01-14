@@ -21,7 +21,13 @@ public class Banfield extends Adventurer{
         this.rand = UniformRandom.rand.split();
     }
     public Banfield(String name){
-        this(name, 10, 10, 10, 10);
+      // Base stats:
+      /*
+      HP: 11.0 (total: 1100)
+      ATK: 6.5 (total: 130)
+      RCV: 3.0 (total: 15)
+      */
+      this(name, 1100, 1100, 130, 15, 10, 10);
     }
     @Override
     public String toString(){

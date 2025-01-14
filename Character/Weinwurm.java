@@ -10,21 +10,29 @@ public class Weinwurm extends Adventurer{
     int HIP, maxHIP; //HIP = Health insurance policies
     private SplittableRandom rand;
     private Sprite sp;
-    public Weinwurm(String name, int hp, int maxhp, int special, int maxspecial){
+    public Weinwurm(String name, int hp, int maxhp, int atk, int rcv, int special, int maxspecial){
         this.setName(name);
         this.setHP(hp);
         this.setmaxHP(maxhp);
         this.setSpecial(special);
+        this.setATK(atk);
+        this.setRCV(rcv);
         this.maxHIP = maxspecial;
         this.rand = UniformRandom.rand.split();
     }
     public Weinwurm(String name){
-        this(name, 10, 10, 10, 10);
+      // Base stats:
+      /*
+      HP: 8.0 (total: 800)
+      ATK: 4.0 (total: 80)
+      RCV: 10.0 (total: 50)
+      */
+        this(name, 800, 800, 80, 50, 10, 10);
     }
 
     @Override
     public Adventurer clone() {
-        return new Weinwurm(this.getName(), this.getHP(), this.getmaxHP(), this.getSpecial(), this.getSpecialMax());
+        return new Weinwurm(this.getName(), this.getHP(), this.getmaxHP(), this.getATK(), this.getRCV(), this.getSpecial(), this.getSpecialMax());
     }
     @Override
     public String toString(){
