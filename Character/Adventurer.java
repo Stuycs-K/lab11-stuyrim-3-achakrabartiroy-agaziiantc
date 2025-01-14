@@ -11,7 +11,7 @@ public abstract class Adventurer{
   private double armor = 1;
   private double bonusatk = 0;
   private int[] regen = new int[2]; //regen[0] will be amt and regen[1] will be turns. For the sake of my sanity regen effects will not stack.
-  private int atk, rcv;
+  private int atk, rcv; //atk does nothing because the person that wrote this (mr lord avocado) never bothered to do anything with it lol
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -30,12 +30,12 @@ public abstract class Adventurer{
   public abstract Adventurer clone();
   //concrete method written using abstract methods.
   //refill special resource by amount, but only up to at most getSpecialMax()
-  public int restoreSpecial(int n){
+  public String restoreSpecial(int n){
     if( n > getSpecialMax() - getSpecial()){
       n = getSpecialMax() - getSpecial();
     }
     setSpecial(getSpecial()+n);
-    return n;
+    return getName() + " restored " + n + " " + this.getSpecialName() + ".";
   }
 
   /*
@@ -175,5 +175,20 @@ public abstract class Adventurer{
   public void setRegen(int[] regen){
     this.regen = regen;
   }
+  public void tick(){ //apply regen stats and just generally correct all stuff that might have gone wrong
 
+    this.setHP(this.getHP() + this.getRCV()); //I LOVE SPENDING 1 TRILLION YEARS IMPLEMENTING SCHIZO IDEAS OF MY GROUP MATE WHILE HE IS PLAYING CHESS RIGHT NEXT TO ME IN CLASS YIPEEEEE HOORAY I LOVE GROUP PROJECTS THIS GUY YAPS ON FACEBOOK ABOUT HOW GOOD HE IS AT CS BUT WHEN CODING DOES LITERALLY NOTHING!!!!!!!!!!!!!!!! I LOVE APCS I LOVE APCS I LOVE APCS I LOVE APCS I LOVE APCS IT'S FUNNY BECAUSE ADVENTURER IS WHAT I ASKED HIM TO DO BUT I CAN LITERALLY YAP ABOUT HIM FOR A WHOLE ESSAY AND HE WON'T NOTICE CAUSE HE DOESN'T DO ANYTHING AND ARKO IF YOU ARE READING THIS THEN GET TO FUCKING WORK IM PUBLIC SHAMING THE HELL OUT OF YOU IN THE PRESENTATION BRO ISTG
+    if(this.getRegen()[0]-- > 0){//subtracting this on every iter should be fine, since there is no modifiers for healing and everything just directly overwrites it.
+      this.setHP(this.getHP() + this.getRegen()[1]);
+    }
+    if(this.getHP() > this.getmaxHP()){
+      this.setHP(this.getmaxHP());
+    }
+    if(this.getSpecial() > this.getSpecialMax()){
+      this.setSpecial(this.getSpecialMax());
+    }
+    if(this.getArmor() < 0){
+      this.setArmor(0);
+    }
+  }
 }

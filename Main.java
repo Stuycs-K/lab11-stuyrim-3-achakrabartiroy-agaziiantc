@@ -1,10 +1,7 @@
 import Render.Border;
 import Render.Screen;
 import Render.Text;
-import Util.Listener;
-import Util.Sprite;
-import Util.TextSprite;
-import Util.spriteSheet;
+import Util.*;
 import Character.Team;
 import Character.Banfield;
 import Character.Sterr;
@@ -15,11 +12,13 @@ import Character.Adventurer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.SplittableRandom;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static final int cd = 750;
     public static Screen screen = new Screen(75, 30); //Do not touch this.
+    public static SplittableRandom rand = UniformRandom.rand.split();
     public static void sendHelp(){ //call this function whenever you touch screen rendering
         try {
             TimeUnit.MILLISECONDS.sleep(cd / 100);
@@ -381,12 +380,20 @@ public class Main {
         String[] inp = new String[2]; //just so that I don't write this array on every iteration of the loop
         while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))) {
             //Read user input
+			for(int i=0; i<3; i++){
+				plrTeam.team[i].tick();
+				enemyTeam.team[i].tick();
+			}
             for(whichPlayer=0; whichPlayer<3; whichPlayer++){
                 sendHelp();
                 for(int i=0; i<3; i++){
                     //spaghetti but it does its job
                     plrTeam.team[i].getSprite().RCE(spriteSheet.Stickman);
+
                     enemyTeam.team[i].getSprite().RCE(spriteSheet.Stickman);
+                }
+                if(plrTeam.team[whichPlayer].getHP() <= 0){
+
                 }
 
                 plrsprites[whichPlayer].RCE(spriteSheet.StickmanAttacking1); //truly one of the animations of all time.
@@ -407,7 +414,7 @@ public class Main {
                 }
                 if(inp[0].equals("4")){
                     //if the player does restore special, it should not let the player select a target because that would be stupid.
-                    plrTeam.team[whichPlayer].restoreSpecial(3); //I completely forgot all the balancing numbers by now so this is probably not very well balanced but at this point I simply no longer care
+                    output.text = plrTeam.team[whichPlayer].restoreSpecial(3).getBytes(); //I completely forgot all the balancing numbers by now so this is probably not very well balanced but at this point I simply no longer care
                     continue;
                 }
                 while(Input.isEmpty()){
@@ -447,6 +454,7 @@ public class Main {
 
                     screen.rmGroupTextSprite(textwall.get(i)); //cursed stuff, I do not like this.
                 }
+                textwall.clear();
                 for(int i=0; i<3; i++){
                     Adventurer plr = plrTeam.team[i]; //TBH it would probably be a good idea to refactor this to be an accessor method but too much effort for literally no benefit other than maybe escaping Mr K's wrath which I am willing to tank
                     Adventurer en = enemyTeam.team[i];
@@ -470,7 +478,74 @@ public class Main {
                 sendHelp();
                 //im 2000 lines in bro I do not want to write actual algorithms no more :sob:
 
-                sleep(750); //TODO: replace this with the cd variable when done havign cd variable be basically 0
+                sleep(cd * 2);
+
+
+            }
+
+            //do enemy turn
+            for(whichOpponent=0; whichOpponent<3; whichOpponent++){
+                inp = new String[]{"" + rand.nextInt(4), "" + rand.nextInt(3)};
+                sendHelp();
+				ensprites[whichOpponent].RCE(spriteSheet.StickmanAttacking1);
+				pointer.teleport(58, 12+whichOpponent*5);
+                
+				if(inp[0].equals("4")){ //Gotta love when a wrong input literally cant happen
+                    output.text = enemyTeam.team[whichOpponent].restoreSpecial(3).getBytes();
+                    continue;
+                }
+				int targetwrap = Integer.parseInt(inp[1]);
+				Adventurer target;
+				//yeah so the ai is going to be stupid and will attack its own teammates
+				//TODO: change the target selection to not do that lmao
+				if(targetwrap <= 2){
+					target = plrTeam.team[targetwrap];
+				} else {
+					target = enemyTeam.team[targetwrap%3];
+				}
+				switch(inp[0]){
+					case "1":
+						output.text = enemyTeam.team[whichOpponent].attack(target).getBytes();
+						target.getSprite().RCE(spriteSheet.StickmanHit2);
+						break;
+					case "2":
+						output.text = enemyTeam.team[whichOpponent].support(target).getBytes();
+						target.getSprite().RCE(spriteSheet.StickmanSupport1);
+						break;
+					case "3":
+						output.text = enemyTeam.team[whichOpponent].support(target).getBytes();
+						target.getSprite().RCE(spriteSheet.StickmanHit2);
+						break;
+				}
+
+				for(int i=0; i<textwall.size(); i++){
+					screen.rmGroupTextSprite(textwall.get(i));				
+				}
+                textwall.clear();
+                for(int i=0; i<3; i++){
+                    Adventurer plr = plrTeam.team[i]; //TBH it would probably be a good idea to refactor this to be an accessor method but too much effort for literally no benefit other than maybe escaping Mr K's wrath which I am willing to tank
+                    Adventurer en = enemyTeam.team[i];
+
+                    textwall.add(new TextSprite[]{
+                            new TextSprite((i) + "-" + plr.toString(), 1, 11 + i * 5),
+                            new TextSprite("HP: " + plr.getHP() + "/" + plr.getmaxHP() + " (" + (plr.getRegen()[1] + plr.getRCV()) + ")", 1, 12 + i * 5),
+                            new TextSprite("Special: " + plr.getSpecial() + "/" + plr.getSpecialMax(), 1, 13 + i * 5),
+                    });
+                    textwall.add(new TextSprite[]{
+                            new TextSprite((i+3) + "-" + en.toString(), 40, 11+i*5),
+                            new TextSprite("HP: " + en.getHP() + "/" + en.getmaxHP() + " (" + (en.getRegen()[1] + en.getRCV()) + ")", 40, 12+i*5),
+                            new TextSprite("Special: " + en.getSpecial() + "/" + en.getSpecialMax(), 40, 13+i*5),
+                    });
+
+                }
+                for(int i=0; i<textwall.size(); i++){
+                    screen.addGroupTextSprite(textwall.get(i)); //cursed stuff
+                }
+                screen.unpause();
+                sendHelp();
+                //im 2000 lines in bro I do not want to write actual algorithms no more :sob:
+
+                sleep(750*2); //TODO: replace these with cd later (specifically once done testing)
 
             }
         }
