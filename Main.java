@@ -18,7 +18,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static final int cd = 750;//50;
+    public static final int cd = 7;//50;
     public static Screen screen = new Screen(75, 30); //Do not touch this.
     public static void sendHelp(){ //call this function whenever you touch screen rendering
         try {
@@ -311,12 +311,19 @@ public class Main {
         screen.addBorder(midDiv);
         screen.addBorder(topDiv);
         screen.addBorder(topDiv2);
+        Sprite[] plrsprites = new Sprite[3];
+        Sprite[] ensprites = new Sprite[3];
 		for(int i=0; i<3; i++){
 			Sprite spplr = spriteSheet.Stickman.clone();
 			screen.addSprite(spplr);
+            plrsprites[i] = spplr;
+            plrTeam.team[i].setSprite(spplr);
 			spplr.teleport(9 + i * 6, 4);
+
 			Sprite spen = spriteSheet.Stickman.clone();
 			screen.addSprite(spen);
+            ensprites[i] = spen;
+            enemyTeam.team[i].setSprite(spen);
 			spen.teleport(47 + i * 6, 4);
 		}
 		/*
@@ -332,7 +339,7 @@ public class Main {
 		*/
 
 		ArrayList<TextSprite[]> textwall = new ArrayList<>(); //scope voodoo magic, I need this thing to not be gc'd or bad things will happen.
-        //textwall indexing: 0 = plr, 1 = enemy
+        //textwall indexing: 0 = plr, 1 = enemy, 2=plr, 3=enemy, 4=plr, 5=enemy. possibly not the best way of doing this but I don't care
 		for(int i=0; i<3; i++){
 			Adventurer plr = plrTeam.team[i]; //TBH it would probably be a good idea to refactor this to be an accessor method but too much effort for literally no benefit other than maybe escaping Mr K's wrath which I am willing to tank
 			Adventurer en = enemyTeam.team[i];
@@ -370,6 +377,13 @@ public class Main {
         while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))) {
             //Read user input
             for(whichPlayer=0; whichPlayer<3; whichPlayer++){
+                for(int i=0; i<3; i++){
+                    //spaghetti but it does its job
+                    plrTeam.team[i].getSprite().RCE(spriteSheet.Stickman);
+                    enemyTeam.team[i].getSprite().RCE(spriteSheet.Stickman);
+                }
+
+                plrsprites[whichPlayer].RCE(spriteSheet.StickmanAttacking1); //truly one of the animations of all time.
                 pointer.teleport(20, 12+whichPlayer*5); //if the hp is longer than 20 characters then we have bigger problems anyways
                 //System.out.println();
 
@@ -382,6 +396,7 @@ public class Main {
                 inp[0] = input;
                 prompt.text = promptText2;
                 if(inp[0].equals("4")){
+                    //if the player does restore special, it should not let the player select a target because that would be stupid.
                     plrTeam.team[whichPlayer].restoreSpecial(3); //I completely forgot all the balancing numbers by now so this is probably not very well balanced but at this point I simply no longer care
                     continue;
                 }
@@ -389,27 +404,63 @@ public class Main {
                     sleep(1); //I really ought to throw this into a separate method but whatever
                 }
                 //choose target
-                inp[1] = input;
-                int targetwrap = Integer.parseInt(inp[0]);
-                Adventurer target;
-                if (targetwrap <= 2){
-                    target = plrTeam.team[targetwrap]; //yeah you can attack your own team. game design is my passion.
-                }else{
-                    target = enemyTeam.team[targetwrap%3];
+                input = Input.removeFirst();
+                try {
+                    inp[1] = input;
+                    int targetwrap = Integer.parseInt(inp[1]);
+                    Adventurer target;
+                    if (targetwrap <= 2) {
+                        target = plrTeam.team[targetwrap]; //yeah you can attack your own team. game design is my passion.
+                    } else {
+                        target = enemyTeam.team[targetwrap % 3];
+                    }
+                    switch (inp[0]) {
+                        case "1":
+                            plrTeam.team[whichPlayer].attack(target);
+                            target.getSprite().RCE(spriteSheet.StickmanHit1);
+                            break;
+                        case "2":
+                            plrTeam.team[whichPlayer].support(target);
+                            target.getSprite().RCE(spriteSheet.StickmanSupport1);
+                            break;
+                        case "3":
+                            plrTeam.team[whichPlayer].specialAttack(target); //TODO: this doesn't modify stats for some reason. Presumably this is a very big issue.
+                            target.getSprite().RCE(spriteSheet.StickmanHit1);
+                            break;
+                        default:
+                            break;
+                    }
+                }catch(NumberFormatException ignored) {//yeah just do nothing, this would go into default anyways.}
                 }
-                switch(inp[0]){
-                    case "1":
-                        plrTeam.team[whichPlayer].attack(target);
-                        break;
-                    case "2":
-                        plrTeam.team[whichPlayer].support(target);
-                        break;
-                    case "3":
-                        plrTeam.team[whichPlayer].specialAttack(target);
-                        break;
-                    default:
-                        break;
+                screen.pause();
+                for(int i=0; i<textwall.size(); i++){
+
+                    screen.rmGroupTextSprite(textwall.get(i)); //cursed stuff, I do not like this.
                 }
+                for(int i=0; i<3; i++){
+                    Adventurer plr = plrTeam.team[i]; //TBH it would probably be a good idea to refactor this to be an accessor method but too much effort for literally no benefit other than maybe escaping Mr K's wrath which I am willing to tank
+                    Adventurer en = enemyTeam.team[i];
+
+                    textwall.add(new TextSprite[]{
+                            new TextSprite((i) + "-" + plr.toString(), 1, 11 + i * 5),
+                            new TextSprite("HP: " + plr.getHP() + "/" + plr.getmaxHP() + " (" + (plr.getRegen()[1] + plr.getRCV()) + ")", 1, 12 + i * 5),
+                            new TextSprite("Special: " + plr.getSpecial() + "/" + plr.getSpecialMax(), 1, 13 + i * 5),
+                    });
+                    textwall.add(new TextSprite[]{
+                            new TextSprite((i+3) + "-" + en.toString(), 40, 11+i*5),
+                            new TextSprite("HP: " + en.getHP() + "/" + en.getmaxHP() + " (" + (en.getRegen()[1] + en.getRCV()) + ")", 40, 12+i*5),
+                            new TextSprite("Special: " + en.getSpecial() + "/" + en.getSpecialMax(), 40, 13+i*5),
+                    });
+
+                }
+                for(int i=0; i<textwall.size(); i++){
+                    screen.addGroupTextSprite(textwall.get(i)); //cursed stuff
+                }
+                screen.unpause();
+                sendHelp();
+                //im 2000 lines in bro I do not want to write actual algorithms no more :sob:
+
+                sleep(750); //TODO: replace this with the cd variable when done havign cd variable be basically 0
 
             }
         }
