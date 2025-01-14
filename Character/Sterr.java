@@ -9,16 +9,24 @@ public class Sterr extends Adventurer {
     int skillissues, maxSkillissues;
     private SplittableRandom rand;
     private Sprite sp;
-    public Sterr(String name, int hp, int maxhp, int special, int maxspecial){
+    public Sterr(String name, int hp, int maxhp, int atk, int rcv, int special, int maxspecial){
         this.setName(name);
         this.setHP(hp);
         this.setmaxHP(maxhp);
         this.setSpecial(special);
+        this.setATK(atk);
+        this.setRCV(rcv);
         this.maxSkillissues = maxspecial;
         this.rand = UniformRandom.rand.split();
     }
     public Sterr(String name){
-        this(name, 10, 10, 10, 10);
+        // Base stats:
+        /*
+        HP: 9.0 (total: 900)
+        ATK: 9.0 (total: 180)
+        RCV: 2.0 (total: 10)
+        */
+        this(name, 900, 900, 180, 10, 10, 10);
     }
 
     @Override
@@ -27,7 +35,7 @@ public class Sterr extends Adventurer {
     }
     @Override
     public Adventurer clone() {
-        return new Sterr(this.getName(), this.getHP(), this.getmaxHP(), this.getSpecial(), this.getSpecialMax());
+        return new Sterr(this.getName(), this.getHP(), this.getmaxHP(), this.getATK(), this.getRCV(), this.getSpecial(), this.getSpecialMax());
     }
     @Override
     public String getSpecialName() {
