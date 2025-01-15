@@ -388,12 +388,16 @@ public class Main {
                 sendHelp();
                 for(int i=0; i<3; i++){
                     //spaghetti but it does its job
-                    plrTeam.team[i].getSprite().RCE(spriteSheet.Stickman);
-
-                    enemyTeam.team[i].getSprite().RCE(spriteSheet.Stickman);
+                    if(plrTeam.team[i].getHP() > 0) {
+                        plrTeam.team[i].getSprite().RCE(spriteSheet.Stickman);
+                    }
+                    if(enemyTeam.team[i].getHP() > 0) {
+                        enemyTeam.team[i].getSprite().RCE(spriteSheet.Stickman);
+                    }
                 }
                 if(plrTeam.team[whichPlayer].getHP() <= 0){
-
+                    plrTeam.team[whichPlayer].getSprite().RCE(spriteSheet.Deadman);
+                    continue;
                 }
 
                 plrsprites[whichPlayer].RCE(spriteSheet.StickmanAttacking1); //truly one of the animations of all time.
@@ -427,7 +431,7 @@ public class Main {
                     int targetwrap = Integer.parseInt(inp[1]);
                     Adventurer target;
                     if (targetwrap <= 2) {
-                        target = plrTeam.team[targetwrap]; //yeah you can attack your own team. game design is my passion.
+                        target = plrTeam.team[targetwrap]; //yeah you can attack your own team and dead people. game design is my passion.
                     } else {
                         target = enemyTeam.team[targetwrap % 3];
                     }
@@ -483,8 +487,24 @@ public class Main {
 
             }
 
+
+
             //do enemy turn
             for(whichOpponent=0; whichOpponent<3; whichOpponent++){
+                for(int i=0; i<3; i++){
+                    //spaghetti but it does its job
+                    if(plrTeam.team[i].getHP() > 0) {
+                        plrTeam.team[i].getSprite().RCE(spriteSheet.Stickman);
+                    }
+                    if(enemyTeam.team[i].getHP() > 0) {
+                        enemyTeam.team[i].getSprite().RCE(spriteSheet.Stickman);
+                    }
+                }
+                if(enemyTeam.team[whichOpponent].getHP() <= 0){
+                    enemyTeam.team[whichOpponent].getSprite().RCE(spriteSheet.Deadman); //this will never happen because SOMEONE changed all characters to have 1 trillion hp without changing damage numbers
+
+                    continue;
+                }
                 inp = new String[]{"" + rand.nextInt(4), "" + rand.nextInt(3)};
                 sendHelp();
 				ensprites[whichOpponent].RCE(spriteSheet.StickmanAttacking1);
@@ -496,7 +516,8 @@ public class Main {
                 }
 				int targetwrap = Integer.parseInt(inp[1]);
 				Adventurer target;
-				//yeah so the ai is going to be stupid and will attack its own teammates
+				//yeah so the ai is going to be stupid and will attack its own teammates and dead people
+
 				//TODO: change the target selection to not do that lmao
 				if(targetwrap <= 2){
 					target = plrTeam.team[targetwrap];

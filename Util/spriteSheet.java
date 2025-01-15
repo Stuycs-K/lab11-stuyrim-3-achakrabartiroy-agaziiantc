@@ -78,6 +78,23 @@ public class spriteSheet {
 				Util.clr(Text.WHITE)
 			});
 
+	public static final Sprite Deadman = new Sprite(
+			new int[][]{
+					{1, 0},
+					{0, 1},{1, 1},{2, 1},
+					{1, 2},
+			},
+			new byte[]{
+					'X',
+					'/', '|', 92,
+					'^'
+			},
+			new String[]{
+					Util.clr(Text.RED),
+					Util.clr(Text.RED), Util.clr(Text.RED), Util.clr(Text.RED),
+					Util.clr(Text.RED)
+			});
+
 	public static final Sprite StickmanHit1 = new Sprite(
 			new int[][]{
 					{2, 0},
