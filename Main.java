@@ -363,6 +363,8 @@ public class Main {
         boolean partyTurn = true;
         int whichPlayer = 0;
         int whichOpponent = 0;
+        boolean plrAlive = true; //yeah I could just do magic with variables that already exist and whatnot but nah
+        boolean opponentAlive = true;
         int turn = 0;
         String input = "";
         for(int i=0; i<3; i++){
@@ -544,7 +546,7 @@ public class Main {
 				}
                 textwall.clear();
                 for(int i=0; i<3; i++){
-                    Adventurer plr = plrTeam.team[i]; //TBH it would probably be a good idea to refactor this to be an accessor method but too much effort for literally no benefit other than maybe escaping Mr K's wrath which I am willing to tank
+                    Adventurer plr = plrTeam.team[i]; //TBH it would probably be a good idea to refactor this to be an accessor method but too much effort for literally no benefit other than maybe escaping Mr K's wrath which at this point I am willing to tank
                     Adventurer en = enemyTeam.team[i];
 
                     textwall.add(new TextSprite[]{
@@ -566,7 +568,23 @@ public class Main {
                 sendHelp();
                 //im 2000 lines in bro I do not want to write actual algorithms no more :sob:
 
-                sleep(750*2); //TODO: replace these with cd later (specifically once done testing)
+                sleep(cd*2);
+
+                //check if player won/lost
+                plrAlive = false;
+                opponentAlive = false;
+                for(int i=0; i<3; i++){
+                    if(plrTeam.team[i].getHP() > 0) {
+                        plrAlive = true;
+                    }
+                    if(enemyTeam.team[i].getHP() > 0){
+                        opponentAlive = true;
+                    }
+                }
+
+                if(!plrAlive || !opponentAlive){
+                    break;
+                }
 
             }
         }
@@ -575,6 +593,23 @@ public class Main {
         for(int i=0; i<textwall.size(); i++){
 
             screen.rmGroupTextSprite(textwall.get(i)); //cursed stuff, I do not like this.
+        }
+        screen.rmBorder(topDiv);
+        screen.rmBorder(topDiv2);
+        screen.rmBorder(midDiv);
+        topDiv = null;
+        topDiv2 = null;
+        midDiv = null;
+
+        TextSprite outro = new TextSprite("", 3, 11);
+        if(plrAlive && opponentAlive){
+            outro.text = "tie".getBytes();
+        }
+        else if(plrAlive && !opponentAlive){
+            outro.text = "you iwn".getBytes();
+        }
+        else if(!plrAlive && opponentAlive){
+            outro.text = "you lose l".getBytes();
         }
 	
     }
