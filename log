@@ -1,0 +1,7 @@
+Exception in thread "main" java.lang.IndexOutOfBoundsException: end
+	at java.base/java.util.regex.Matcher.region(Matcher.java:1553)
+	at java.base/java.util.Scanner.findPatternInBuffer(Scanner.java:1097)
+	at java.base/java.util.Scanner.findWithinHorizon(Scanner.java:1800)
+	at java.base/java.util.Scanner.hasNextLine(Scanner.java:1619)
+	at Util.Listener.flush(Listener.java:21)
+	at Main.main(Main.java:387)
