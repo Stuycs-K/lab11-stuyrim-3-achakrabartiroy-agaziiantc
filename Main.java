@@ -16,7 +16,7 @@ import java.util.SplittableRandom;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static final int cd = 750;
+    public static final int cd = 1;
     public static Screen screen = new Screen(75, 30); //Do not touch this.
     public static SplittableRandom rand = UniformRandom.rand.split();
     public static void sendHelp(){ //call this function whenever you touch screen rendering
@@ -372,16 +372,20 @@ public class Main {
             enemyTeam.team[i].team = enemyTeam; //definitely the worst way of doing this, but I do not care
         }
         Sprite pointer = spriteSheet.arrow1.clone();
-        byte[] promptText1 = "Input 1 to attack, 2 to support, 3 to special attack, 4 to restore special, q to quit, anything else to skip turn".getBytes();
+        byte[] promptText1 = "Input 1/attack, 2/support, 3/special, 4/restore, q to quit, anything else to skip turn".getBytes();
         byte[] promptText2 = "Input a number to target, 0-2 is your team, and 3-5 is the enemy team.".getBytes();
-        prompt = new TextSprite(promptText1, 1, 25);
+        prompt = new TextSprite("If you are reading this text, something went very wrong!", 1, 25);
         output = new TextSprite("", 39, 25);
         screen.addSprite(pointer);
         screen.addTextSprite(prompt);
         screen.addTextSprite(output);
         String[] inp = new String[2]; //just so that I don't write this array on every iteration of the loop
+        in.setMode(1); //let the player chain inputs, i.e attack 3 su 1 sp 4
+        Input.clear();
+        //voodoo magic levels of which no one had ever been able to conceive
+        //For some reason, the first input is just eaten, so like??? idk
         while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))) {
-            //Read user input
+
 			for(int i=0; i<3; i++){
 				plrTeam.team[i].tick();
 				enemyTeam.team[i].tick();
@@ -402,33 +406,55 @@ public class Main {
                     continue;
                 }
 
+
+                //Read user input
                 plrsprites[whichPlayer].RCE(spriteSheet.StickmanAttacking1); //truly one of the animations of all time.
-                pointer.teleport(20, 12+whichPlayer*5); //if the hp is longer than 20 characters then we have bigger problems anyways
+                pointer.teleport(25, 12+whichPlayer*5); //if the hp is longer than 20 characters then we have bigger problems anyways
                 //System.out.println();
 
                 //choose move
                 prompt.text = promptText1;
+                screen.pause();
+                sendHelp();
+                System.out.println("test123");
                 while(Input.isEmpty()){
                     sleep(1); //do nothing, learned fancy term for this today called "fencing"
                 }
+
+                screen.unpause();
+                sendHelp();
                 input = (Input.removeFirst()); //player can pre-fire turns, this functionality can be removed by clearing input after reading it, so this is a design choice.
-                inp[0] = input;
+                inp[0] = input; //insane levels of spaghetti
+                System.out.println(input);
                 prompt.text = promptText2;
-                if(!"1234".contains(inp[0])){
+                if(!"1234attackasupportsuspecialspq".contains(inp[0])){
                     //player did not do a valid turn. could be lenient and let the player reselect turn but will not do that.
                     continue;
                 }
-                if(inp[0].equals("4")){
+                if(inp[0].equals("q")){
+                    break;
+                }
+                if(inp[0].equals("4") || inp[0].equals("restore")){
                     //if the player does restore special, it should not let the player select a target because that would be stupid.
                     output.text = plrTeam.team[whichPlayer].restoreSpecial(3).getBytes(); //I completely forgot all the balancing numbers by now so this is probably not very well balanced but at this point I simply no longer care
                     continue;
                 }
+                screen.pause();
+                sendHelp();
+                System.out.println("test124");
                 while(Input.isEmpty()){
                     sleep(1); //I really ought to throw this into a separate method but whatever
                 }
+                //cursed stuff here
+                sendHelp();
+                screen.unpause();
+                sendHelp();
+
+
                 //choose target
                 input = Input.removeFirst();
                 try {
+                    sendHelp(); //this function is like 10% of the code lol
                     inp[1] = input;
                     int targetwrap = Integer.parseInt(inp[1]);
                     Adventurer target;
@@ -438,15 +464,16 @@ public class Main {
                         target = enemyTeam.team[targetwrap % 3];
                     }
                     switch (inp[0]) {
-                        case "1":
+                        case "1", "attack", "a":
                             output.text = plrTeam.team[whichPlayer].attack(target).getBytes();
                             target.getSprite().RCE(spriteSheet.StickmanHit1);
                             break;
-                        case "2":
+
+                        case "2", "support", "su":
                             output.text = plrTeam.team[whichPlayer].support(target).getBytes();
                             target.getSprite().RCE(spriteSheet.StickmanSupport1);
                             break;
-                        case "3":
+                        case "3", "special", "sp":
                             output.text = plrTeam.team[whichPlayer].specialAttack(target).getBytes(); //TODO: this doesn't modify stats for some reason. Presumably this is a very big issue.
                             target.getSprite().RCE(spriteSheet.StickmanHit1);
                             break;
@@ -510,7 +537,7 @@ public class Main {
                 inp = new String[]{"" + rand.nextInt(4), "" + rand.nextInt(3)};
                 sendHelp();
 				ensprites[whichOpponent].RCE(spriteSheet.StickmanAttacking1);
-				pointer.teleport(58, 12+whichOpponent*5);
+				pointer.teleport(63, 12+whichOpponent*5);
                 
 				if(inp[0].equals("4")){ //Gotta love when a wrong input literally cant happen
                     output.text = enemyTeam.team[whichOpponent].restoreSpecial(3).getBytes();
@@ -570,23 +597,24 @@ public class Main {
 
                 sleep(cd*2);
 
-                //check if player won/lost
-                plrAlive = false;
-                opponentAlive = false;
-                for(int i=0; i<3; i++){
-                    if(plrTeam.team[i].getHP() > 0) {
-                        plrAlive = true;
-                    }
-                    if(enemyTeam.team[i].getHP() > 0){
-                        opponentAlive = true;
-                    }
-                }
-
-                if(!plrAlive || !opponentAlive){
-                    break;
-                }
 
             }
+            //check if player won/lost
+            plrAlive = false;
+            opponentAlive = false;
+            for(int i=0; i<3; i++){
+                if(plrTeam.team[i].getHP() > 0) {
+                    plrAlive = true;
+                }
+                if(enemyTeam.team[i].getHP() > 0){
+                    opponentAlive = true;
+                }
+            }
+
+            if(!plrAlive || !opponentAlive){
+                break;
+            }
+
         }
 
         //cleanup
@@ -600,7 +628,10 @@ public class Main {
         topDiv = null;
         topDiv2 = null;
         midDiv = null;
-
+        screen.rmGroupSprite(plrsprites);
+        screen.rmGroupSprite(ensprites); //not setting these things to null but who cares tbh the program stops like 10 seconds after this
+        screen.rmTextSprite(prompt);
+        screen.rmTextSprite(output);
         TextSprite outro = new TextSprite("", 3, 11);
         if(plrAlive && opponentAlive){
             outro.text = "tie".getBytes();
@@ -611,6 +642,8 @@ public class Main {
         else if(!plrAlive && opponentAlive){
             outro.text = "you lose l".getBytes();
         }
-	
+        screen.addTextSprite(outro);
+        sleep(cd*3);
+        System.exit(1);
     }
 }
