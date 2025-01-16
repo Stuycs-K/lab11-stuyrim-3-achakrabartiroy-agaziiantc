@@ -342,7 +342,7 @@ public class Main {
 		for(int i=0; i<3; i++){
 			Adventurer plr = plrTeam.team[i]; //TBH it would probably be a good idea to refactor this to be an accessor method but too much effort for literally no benefit other than maybe escaping Mr K's wrath which I am willing to tank
 			Adventurer en = enemyTeam.team[i];
-			
+
 			textwall.add(new TextSprite[]{
                     new TextSprite(plr.toString(), 1, 11 + i * 5),
                     new TextSprite("HP: " + plr.getHP() + "/" + plr.getmaxHP() + " (" + (plr.getRegen()[1] + plr.getRCV()) + ")", 1, 12 + i * 5),
@@ -353,7 +353,7 @@ public class Main {
 				new TextSprite("HP: " + en.getHP() + "/" + en.getmaxHP() + " (" + (en.getRegen()[1] + en.getRCV()) + ")", 40, 12+i*5),
 				new TextSprite("Special: " + en.getSpecial() + "/" + en.getSpecialMax(), 40, 13+i*5),
 			});
-			
+
 		}
 		for(int i=0; i<textwall.size(); i++){
 			screen.addGroupTextSprite(textwall.get(i)); //cursed stuff
@@ -538,7 +538,7 @@ public class Main {
                 sendHelp();
 				ensprites[whichOpponent].RCE(spriteSheet.StickmanAttacking1);
 				pointer.teleport(63, 12+whichOpponent*5);
-                
+
 				if(inp[0].equals("4")){ //Gotta love when a wrong input literally cant happen
                     output.text = enemyTeam.team[whichOpponent].restoreSpecial(3).getBytes();
                     continue;
@@ -569,12 +569,13 @@ public class Main {
 				}
 
 				for(int i=0; i<textwall.size(); i++){
-					screen.rmGroupTextSprite(textwall.get(i));				
+					screen.rmGroupTextSprite(textwall.get(i));
 				}
                 textwall.clear();
                 for(int i=0; i<3; i++){
                     Adventurer plr = plrTeam.team[i]; //TBH it would probably be a good idea to refactor this to be an accessor method but too much effort for literally no benefit other than maybe escaping Mr K's wrath which at this point I am willing to tank
                     Adventurer en = enemyTeam.team[i];
+                    // IMPORTANT: USE TICK HERE
 
                     textwall.add(new TextSprite[]{
                             new TextSprite((i) + "-" + plr.toString(), 1, 11 + i * 5),
@@ -586,6 +587,8 @@ public class Main {
                             new TextSprite("HP: " + en.getHP() + "/" + en.getmaxHP() + " (" + (en.getRegen()[1] + en.getRCV()) + ")", 40, 12+i*5),
                             new TextSprite("Special: " + en.getSpecial() + "/" + en.getSpecialMax(), 40, 13+i*5),
                     });
+                    // tick
+                    Game.tick(); // this may cause everything we have to go kaboom
 
                 }
                 for(int i=0; i<textwall.size(); i++){

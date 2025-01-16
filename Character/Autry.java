@@ -8,6 +8,10 @@ import Util.UniformRandom;
 public class Autry extends Adventurer{
     int dumbbells, maxDumbbells;
     int numSpecial = 0;
+    double hpx = 1.0; // multipliers
+    double atkx = 1.0;
+    double rcvx = 1.0;
+    //track status changes
     private SplittableRandom rand;
     private Sprite sp;
     public int id = 7; //I don't kintValintValnow why, but if this is static it breaks everything.
@@ -90,6 +94,7 @@ public class Autry extends Adventurer{
         this.dumbbells-=2;
         this.numSpecial += 1;
         if (this.numSpecial % 5 != 0) {
+          // first actually change damage multiplier
           return this.getName() + " lifts " + Integer.toString(this.numSpecial * 100) + "lb dumbbells, making him deal 2x dmg for one turn (2.5x against unprepared enemies).";
         } else if (this.numSpecial % 5 == 0) {
           //

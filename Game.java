@@ -7,10 +7,26 @@ public class Game{
   private static final int HEIGHT = 30;
   private static final int BORDER_COLOR = Text.BLACK;
   private static final int BORDER_BACKGROUND = Text.WHITE + Text.BACKGROUND;
+  private static int TURNS = 0;
 
   public static void main(String[] args) {
     run();
   }
+
+
+  public static void tick() {
+    // change status effects/turns remaining/elapsed
+    // 95% chance this makes everything violently explode. You have been forewarned.
+    TURNS += 1; // 1 turn = both player and enemies go once
+  }
+  public static int getTurns() {
+    return TURNS;
+  }
+
+
+
+
+
 
   //Display the borders of your screen that will not change.
   //Do not write over the blank areas where text will appear or parties will appear.
