@@ -16,9 +16,17 @@ Make a clear list of features that work/dont work
 :beetle: This is a bug that affects the game.
 
 
+:white_check_mark: The core game works (the character selector, turns, quitting the game, etc.)
+
+:ballot_box_with_check: Very fancy shmancy screen with sprites and stuff (unfortunately isn't quite used to it's full potential, you can boot up Test.java to see what it can do though)
+
+:beetle: The screen explodes sometimes. And when I say explodes I actually mean explodes. Like it just scatters stuff everywhere. There's a sendHelp() function that I call like every 5 lines to help alleviate that.
+
 ## Character.Adventurer Subclasses
 
 replace this with your documentation for your two Character.Adventurer subclasses. If you modify or replace the provided Character.CodeWarrior class, please provide documentation for that as well.
+
+codewarrior got 360 no-scoped out of the game
 
 ### ok so the way we will do this is we implement one from every table and then if we still have time left after we will add the others. spending 50 hours on making a bijillion classes before we have anything else is a bad idea. do not spend 50 hours making a bijillion classes unless we have nothing else to do.
 
