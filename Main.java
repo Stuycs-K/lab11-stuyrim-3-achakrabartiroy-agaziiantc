@@ -16,7 +16,7 @@ import java.util.SplittableRandom;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static final int cd = 1;
+    public static final int cd = 750;
     public static Screen screen = new Screen(75, 30); //Do not touch this.
     public static SplittableRandom rand = UniformRandom.rand.split();
     public static void sendHelp(){ //call this function whenever you touch screen rendering
@@ -416,7 +416,8 @@ public class Main {
                 prompt.text = promptText1;
                 screen.pause();
                 sendHelp();
-                System.out.println("test123");
+                //System.out.println("test123");
+                Text.go(13+whichPlayer*5, 27);
                 while(Input.isEmpty()){
                     sleep(1); //do nothing, learned fancy term for this today called "fencing"
                 }
@@ -441,7 +442,8 @@ public class Main {
                 }
                 screen.pause();
                 sendHelp();
-                System.out.println("test124");
+                //System.out.println("test124");
+                Text.go(13+whichPlayer*5, 27);
                 while(Input.isEmpty()){
                     sleep(1); //I really ought to throw this into a separate method but whatever
                 }
