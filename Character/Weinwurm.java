@@ -106,7 +106,7 @@ public class Weinwurm extends Adventurer{
 
     @Override
     public String attack(Adventurer other) {
-        int dmg = (1+rand.nextInt(1));
+        int dmg = (int)((1+rand.nextInt(1)) * this.getBonusatk());
         other.applyDamage(dmg);
         other.modifyPreparedness(-1);
         return this.getName() + " throws pencils at " + other.getName() + ", making them less prepared and dealing " + dmg + " damage.";

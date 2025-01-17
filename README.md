@@ -1,6 +1,8 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/KprAwj1n)
 # APCS - Stuyrim
 
+project id: 1
+
 ## Features
 
 Make a clear list of features that work/dont work
@@ -21,6 +23,8 @@ Make a clear list of features that work/dont work
 :ballot_box_with_check: Very fancy shmancy screen with sprites and stuff (unfortunately isn't quite used to it's full potential, you can boot up Test.java to see what it can do though)
 
 :beetle: The screen explodes sometimes. And when I say explodes I actually mean explodes. Like it just scatters stuff everywhere. There's a sendHelp() function that I call like every 5 lines to help alleviate that.
+
+:question: the end screen exists but never really comes up because game design
 
 ## Character.Adventurer Subclasses
 
@@ -101,11 +105,13 @@ note for when in class: we forgot support abilities lols
 # Bosses
 
 
-| Mr. K But Evil Not Actually Mr. K                              | Dr. Kiwi                                                                           | Mr Morran (Superboss)                |
-|:---------------------------------------------------------------|:-----------------------------------------------------------------------------------|:-------------------------------------|
-| Special: Gives a test in hexadecimal assembly                  | Special: Assigns 50 edpuzzles                                                      | Special: Summons 2 police as minions |
-| Attack: Makes target spend the next 2 turns doing a lab (stun) | Attack: Assigns 20 edpuzzles                                                       | Attack: Tackles target               |
-| Special Resource: Sarcasm T-Shirts                             | Special Resource: Edpuzzles(WILL cause an infinite loop of pain if not dealt with) | Special Resource: Confiscated phones |
+| ~~Mr. K But Evil Not Actually Mr. K~~                                        | Dr. Kiwi                                                                           | Mr Morran (Superboss)                       |
+|:-----------------------------------------------------------------------------|:-----------------------------------------------------------------------------------|:--------------------------------------------|
+| Special: Does damage based on special. Idk what to do for the description rn | Special: Assigns 50 edpuzzles                                                      | Special: Summons 2 police as minions        |
+| Attack: Asks the target if it had ever written a compiler                    | Attack: Assigns 20 edpuzzles                                                       | Attack: Tackles target                      |
+| Special Resource: Divine Intellect                                           | Special Resource: Edpuzzles(WILL cause an infinite loop of pain if not dealt with) | Special Resource: Confiscated phones        |
+| Support: The will of god                                                     | Support: not implementing so doesn't matter                                        | Support: not implementing so doesn't matter |
+
 
   
   

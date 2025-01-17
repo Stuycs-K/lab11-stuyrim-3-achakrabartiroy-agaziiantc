@@ -17,7 +17,7 @@ public class AdventurerSheet {
             "Harmonious Defeat", "Heroic Crusaders", "Shivering Death", "Whispers of Ending", "Association of the Ambitious", "Blood of the Jaguar", "Forsakenbrawlers", "Wreckingbrows", "Chaosstand"
     };
     public static final Adventurer[] adventurers = new Adventurer[]{
-        new Banfield("banban"), new Sterr("skibidierr"), new Weinwurm("yeah idk")
+        new Banfield("banban"), new Sterr("skibidierr"), new Weinwurm("yeah idk"), new Boss("the name literally doesn ot matter")
     };
 
     public static Adventurer randomAdventurer() {

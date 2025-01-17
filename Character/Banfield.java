@@ -87,6 +87,7 @@ public class Banfield extends Adventurer{
             return this.getName() + " attempted to make " + other.getName() + " give a presentation, but did not have enough phospholipids";
         }
         this.phospholipids-=2;
+        other.modifyStun(1);
         return this.getName() + " makes " + other.getName() + " give a presentation on " + Util.topics[rand.nextInt(4)] + ", stunning them for a turn";
     }
 
@@ -104,8 +105,9 @@ public class Banfield extends Adventurer{
     public String attack(Adventurer other) {
         phospholipids++;
         other.modifyPreparedness(-1);
-        other.applyDamage(2);
-        return this.getName() + " gives " + other.getName() + " a fake quiz, making them less prepared and dealing 2 damage.";
+        int dmg = (int)(2 * this.getBonusatk());
+        other.applyDamage(dmg);
+        return this.getName() + " gives " + other.getName() + " a fake quiz, making them less prepared and dealing " + dmg + " damage.";
     }
 
     @Override
