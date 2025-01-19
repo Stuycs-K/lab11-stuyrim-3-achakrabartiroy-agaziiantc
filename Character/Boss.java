@@ -38,7 +38,7 @@ public class Boss extends Adventurer {
 
     @Override
     public Adventurer clone() {
-        return new Banfield(this.getName(), this.getHP(), this.getmaxHP(), this.getATK(), this.getRCV(), this.getSpecial(), this.getSpecialMax());
+        return new Boss(this.getName(), this.getHP(), this.getmaxHP(), this.getATK(), this.getRCV(), this.getSpecial(), this.getSpecialMax());
     }
 
 
@@ -89,13 +89,17 @@ public class Boss extends Adventurer {
     public String specialAttack(Adventurer other) {
         //Idk what to put for the string, but the functionality is there
         Adventurer[] arr = other.team.team; //Strongest basic coding convention vs weakest spaghetti code
-        for(int i=0; i<3; i++){
-            arr[i].applyDamage((int)(this.getSpecial() * getBonusatk()));
-            if(this.getSpecial() > 0){
+        StringBuilder out = new StringBuilder();
+        out.append(this.getName() + " starts smiting people ");
+        for(int i=0; i<3; i++) {
+            int dmg = ((int) (this.getSpecial() * getBonusatk()));
+            arr[i].applyDamage(dmg);
+            out.append(arr[i].getName() + " takes " + dmg + "damage, ");
+            if (this.getSpecial() > 0) {
                 this.divineIntellect--;
             }
+            return out.toString().substring(0, out.length() - 2);
         }
-
 
         return "";
     }

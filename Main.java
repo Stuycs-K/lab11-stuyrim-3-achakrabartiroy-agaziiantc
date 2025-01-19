@@ -16,7 +16,7 @@ import java.util.SplittableRandom;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static final int cd = 750;
+    public static final int cd = 1;
     public static Screen screen = new Screen(75, 30); //Do not touch this.
     public static SplittableRandom rand = UniformRandom.rand.split();
     public static void sendHelp(){ //call this function whenever you touch screen rendering

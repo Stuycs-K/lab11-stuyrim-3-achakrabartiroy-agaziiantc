@@ -3,6 +3,7 @@ package Character;
 import Util.UniformRandom;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.SplittableRandom;
 
@@ -31,12 +32,17 @@ public class AdventurerSheet {
         Team out = new Team(teamNames[rand.nextInt(teamNames.length)]);
         for (int i = 0; i < adventurers.length; i++) {
             arr.add(i);
+
         }
+        System.out.println(Arrays.toString(adventurers));
+        System.out.println(arr);
         for(int i=0; i<3; i++){
             Adventurer a = adventurers[arr.remove(rand.nextInt(arr.size()))].clone();
             a.setName(names[rand.nextInt(names.length)]);
+            System.out.println(a);
             out.add(a);
         }
+        System.out.println(arr);
 
 
 
