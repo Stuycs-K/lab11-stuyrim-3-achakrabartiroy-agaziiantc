@@ -105,12 +105,12 @@ note for when in class: we forgot support abilities lols
 # Bosses
 
 
-| ~~Mr. K But Evil Not Actually Mr. K~~                                        | Dr. Kiwi                                                                           | Mr Morran (Superboss)                       |
-|:-----------------------------------------------------------------------------|:-----------------------------------------------------------------------------------|:--------------------------------------------|
-| Special: Does damage based on special. Idk what to do for the description rn | Special: Assigns 50 edpuzzles                                                      | Special: Summons 2 police as minions        |
-| Attack: Asks the target if it had ever written a compiler                    | Attack: Assigns 20 edpuzzles                                                       | Attack: Tackles target                      |
-| Special Resource: Divine Intellect                                           | Special Resource: Edpuzzles(WILL cause an infinite loop of pain if not dealt with) | Special Resource: Confiscated phones        |
-| Support: The will of god                                                     | Support: not implementing so doesn't matter                                        | Support: not implementing so doesn't matter |
+| ~~Mr. K But Evil Not Actually Mr. K~~                     | Dr. Kiwi                                                                           | Mr Morran (Superboss)                       |
+|:----------------------------------------------------------|:-----------------------------------------------------------------------------------|:--------------------------------------------|
+| Special: Smites the enemies                               | Special: Assigns 50 edpuzzles                                                      | Special: Summons 2 police as minions        |
+| Attack: Asks the target if it had ever written a compiler | Attack: Assigns 20 edpuzzles                                                       | Attack: Tackles target                      |
+| Special Resource: Divine Intellect                        | Special Resource: Edpuzzles(WILL cause an infinite loop of pain if not dealt with) | Special Resource: Confiscated phones        |
+| Support: The will of god                                  | Support: not implementing so doesn't matter                                        | Support: not implementing so doesn't matter |
 
 
   
